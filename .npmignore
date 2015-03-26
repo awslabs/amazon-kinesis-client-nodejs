@@ -3,3 +3,8 @@
 /lib/jars
 /node_modules
 *.log
+
+Gruntfile.js
+/conf
+/samples
+/test

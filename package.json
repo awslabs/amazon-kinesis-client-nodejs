@@ -1,0 +1,68 @@
+{
+  "name": "aws-kcl",
+  "description": "Kinesis Client Libray (KCL) in Node.js.",
+  "version": "0.5.0",
+  "author": {
+    "name": "Amazon Web Services",
+    "url": "http://aws.amazon.com/"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "bin": {
+    "kcl-bootstrap": "bin/kcl-bootstrap",
+    "kcl-bootstrap.bat": "bin/kcl-bootstrap.bat"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "compile": "grunt compile",
+    "clean": "grunt clean",
+    "test": "grunt test",
+    "release": "grunt release",
+    "doc": "grunt jsdoc"
+  },
+  "dependencies": {
+    "commander": "~2.6.0",
+    "machina": "~1.0.0-1"
+  },
+  "devDependencies": {
+    "async": "~0.9.0",
+    "aws-sdk": "2.x",
+    "blanket": "~1.1.5",
+    "chai": "^1.10.0",
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-jsdoc": "~0.5.8",
+    "grunt-mocha-test": "~0.12.7",
+    "log4js": "~0.6.22",
+    "mocha": "^2.1.0",
+    "sinon": "^1.12.2"
+  },
+  "homepage": "https://github.com/awslabs/amazon-kinesis-client-nodejs",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/awslabs/amazon-kinesis-client-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/awslabs/amazon-kinesis-client-nodejs/issues"
+  },
+  "licenses": [
+    {
+      "type": "Amazon Software License",
+      "url": "https://github.com/awslabs/amazon-kinesis-client-nodejs/blob/master/LICENSE.txt"
+    }
+  ],
+  "keywords": [
+    "api",
+    "amazon",
+    "aws",
+    "big data",
+    "kinesis",
+    "kinesis client library",
+    "kcl",
+    "node.js"
+  ]
+}

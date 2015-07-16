@@ -27,14 +27,13 @@ var spawn = require('child_process').spawn;
 var url = require('url');
 var util = require('util');
 
-
+var DEFAULT_KCL_VERSION = '1.2.0';
 var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('commons-codec', 'commons-codec', '1.3'),
   getMavenPackageInfo('joda-time', 'joda-time', '2.4'),
   getMavenPackageInfo('com.amazonaws', 'aws-java-sdk', '1.7.13'),
   getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-databind', '2.1.1'),
   getMavenPackageInfo('commons-logging', 'commons-logging', '1.1.1'),
-  getMavenPackageInfo('com.amazonaws', 'amazon-kinesis-client', '1.2.0'),
   getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-core', '2.1.1'),
   getMavenPackageInfo('org.apache.httpcomponents', 'httpclient', '4.2'),
   getMavenPackageInfo('org.apache.httpcomponents', 'httpcore', '4.2'),
@@ -62,14 +61,18 @@ function parseArguments() {
     .option('-j, --java [java path]', 'path to java executable - defaults to using JAVA_HOME environment variable to get java path (optional)')
     .option('-c, --jar-path [jar path]', 'path where all multi-language daemon jar files will be downloaded (optional)')
     .option('-e, --execute', 'execute the KCL application')
+    .option('--kcl-version', 'specify the version of KCL to download and run')
     .parse(process.argv);
 
   var args = {
     'properties': program.properties,
     'java': (program.java ? program.java : (process.env.JAVA_HOME ? path.join(process.env.JAVA_HOME, 'bin', 'java') : null)),
     'jarPath': (program.jarPath ? program.jarPath : DEFAULT_JAR_PATH),
-    'execute': program.execute
+    'execute': program.execute,
+    'kclVersion': program.kclVersion || DEFAULT_KCL_VERSION
   };
+
+  MAVEN_PACKAGE_LIST.push(getMavenPackageInfo('com.amazonaws', 'amazon-kinesis-client', args.kclVersion));
 
   if (!args.properties) {
     invalidInvocationExit(program, 'Specify a valid --properties value.', true);

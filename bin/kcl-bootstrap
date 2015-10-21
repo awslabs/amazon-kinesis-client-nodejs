@@ -47,8 +47,6 @@ var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-annotations', '2.1.1')
 ];
 
-];
-
 var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '..', 'lib', 'jars'));
 var MULTI_LANG_DAEMON_CLASS = 'com.amazonaws.services.kinesis.multilang.MultiLangDaemon';
 var MAX_HTTP_REDIRECT_FOLLOW = 3;

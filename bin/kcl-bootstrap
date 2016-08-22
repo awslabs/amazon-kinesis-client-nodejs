@@ -47,7 +47,8 @@ var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('com.fasterxml.jackson.dataformat', 'jackson-dataformat-cbor', '2.6.6'),
   getMavenPackageInfo('org.apache.httpcomponents', 'httpclient', '4.5.2'),
   getMavenPackageInfo('org.apache.httpcomponents', 'httpcore', '4.4.4'),
-  getMavenPackageInfo('com.google.guava', 'guava', '18.0')
+  getMavenPackageInfo('com.google.guava', 'guava', '18.0'),
+  getMavenPackageInfo('com.google.protobuf', 'protobuf-java', '2.6.1')
 ];
 
 var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '..', 'lib', 'jars'));

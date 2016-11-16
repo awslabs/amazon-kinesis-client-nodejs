@@ -67,25 +67,27 @@ function bootstrap() {
 
 function parseArguments() {
   program
-    .option('-p, --properties <properties file>', 'properties file with multi-language daemon options')
+    .option('-p, --properties <properties files>', 'properties files (separated by commas) with multi-language daemon options')
     .option('-j, --java [java path]', 'path to java executable - defaults to using JAVA_HOME environment variable to get java path (optional)')
     .option('-c, --jar-path [jar path]', 'path where all multi-language daemon jar files will be downloaded (optional)')
     .option('-e, --execute', 'execute the KCL application')
     .parse(process.argv);
 
   var args = {
-    'properties': program.properties,
+    'properties': program.properties.split(','),
     'java': (program.java ? program.java : (process.env.JAVA_HOME ? path.join(process.env.JAVA_HOME, 'bin', 'java') : null)),
     'jarPath': (program.jarPath ? program.jarPath : DEFAULT_JAR_PATH),
     'execute': program.execute
   };
 
-  if (!args.properties) {
+  if (!args.properties && args.properties.length < 1) {
     invalidInvocationExit(program, 'Specify a valid --properties value.', true);
   }
-  if (!isFile(args.properties)) {
-    invalidInvocationExit(program, args.properties + ' file does not exist. Specify a valid --properties value.', true);
-  }
+  args.properties.forEach(function (propFile) {
+    if (!isFile(propFile)) {
+      invalidInvocationExit(program, propFile + ' file does not exist. Specify a valid --properties value.', true);
+    }
+  });
   if (!isFile(args.java)) {
     invalidInvocationExit(program, 'Valid --java value is required or alternatively JAVA_HOME environment variable must be set.', true);
   }
@@ -99,21 +101,33 @@ function parseArguments() {
 }
 
 function startKinesisClientLibraryApplication(options) {
-  var classpath = getClasspath(options).join(getPathDelimiter());
   var java = options.java;
-  var args = ['-cp', classpath, MULTI_LANG_DAEMON_CLASS, options.properties];
-  var cmd = java + ' ' + args.join(' ');
+  options.properties.forEach(function (propFile, index) {
+    var classpath = getClasspath(options, propFile).join(getPathDelimiter());
+    var args = ['-cp', classpath, MULTI_LANG_DAEMON_CLASS, propFile];
+    var cmd = java + ' ' + args.join(' ');
 
-  console.log("==========================================================");
-  console.log(cmd);
-  console.log("==========================================================");
-  if (options.execute) {
-    console.log("Starting Multi-Lang Daemon ...");
-    spawn(java, args, { stdio: 'inherit' });
-  }
+    console.log('( ' + index + ' ) ==========================================================');
+    console.log('( ' + index + ' ) ' + cmd);
+    console.log('( ' + index + ' ) ==========================================================');
+    if (options.execute) {
+      console.log('( ' + index + ' ) Starting Multi-Lang Daemon ...');
+      // var p = spawn(java, args, { stdio: 'inherit' }); // defining stdio, makes stdout/err null
+      var p = spawn(java, args);
+      p.stdout.on('data', function (data) {
+        console.log('(' + index + ') ' + data);
+      });
+      p.stderr.on('data', function (data) {
+        console.log('(' + index + ') ' + data);
+      });
+      p.on('close', function (code) {
+        console.log('(' + index + ') Multi-Lang Daemon exited with code: ' + code);
+      });
+    }
+  });
 }
 
-function getClasspath(options) {
+function getClasspath(options, propFile) {
   var classpath = [];
   fs.readdirSync(options.jarPath).map(function (file) {
     return path.join(options.jarPath, file);
@@ -123,7 +137,7 @@ function getClasspath(options) {
     classpath.push(path.resolve(file));
   });
   classpath.push(path.resolve('.'));
-  classpath.push(path.dirname(path.resolve(options.properties)));
+  classpath.push(path.dirname(path.resolve(propFile)));
   return classpath;
 }
 

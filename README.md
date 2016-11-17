@@ -232,7 +232,7 @@ Log into an Amazon EC2 instance running Amazon Linux, then perform the following
     sudo yum install nodejs npm --enablerepo=epel
     sudo yum install git
     # clone the git repository to work with the samples
-    git clone https://github.com/awslabs/amazon-kinesis-client-node.git kclnodejs
+    git clone https://github.com/awslabs/amazon-kinesis-client-nodejs.git kclnodejs
     cd kclnodejs/samples/basic_sample/producer/
     # download dependencies
     npm install

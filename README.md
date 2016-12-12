@@ -272,6 +272,11 @@ In this release, we have abstracted these implementation details away and expose
 
 ## Release Notes
 
+### Release 0.6.0 (December 12, 2016)
+* Updated the dependency on [Amazon Kinesis Client for Java][amazon-kcl-github] to 1.7.2.
+  * PR #23
+  * PR #24
+
 ### Release 0.5.0 (March 26, 2015)
 * The `aws-kcl` npm module allows implementation of record processors in Node.js using the Amazon KCL [MultiLangDaemon][multi-lang-daemon].
 * The `samples` directory contains a sample producer and processing applications using the Amazon KCL for Node.js.

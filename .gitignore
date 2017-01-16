@@ -1,6 +1,5 @@
 /coverage
 /doc
-/lib/jars
 /node_modules
 *.log
 .idea

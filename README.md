@@ -216,6 +216,29 @@ To start the data processor, run the following command from the root of the repo
     kcl-bootstrap --help
 ```
 
+## Running the DynamoDB Stream Sample
+
+The samples/ddb_stream_sample/consumer sample demonstrates using KCL to consume a DynamoDB stream.  It is essencially the same code
+as the samples/basic_sample/consumer sample, except instead of a Kinesis stream, a DynamoDB stream is consumed and logged to a file.
+
+To run this sample, you must first create a DynamoDB table in your account and enable streaming on that table.  When you do this, you will
+be given an ARN for the stream, which you then need to put into samples/ddb_stream_sample/consumer/sample.properties as the "streamName".
+You must do this before running the sample.
+
+To run the sample, run the following command from the root of the repository:
+
+```sh
+    cd samples/ddb_stream_sample/consumer
+    ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties -s
+```
+
+The addition of "-s" to the command line causes kcl-bootstrap to use the DynamoDB Stream adapter to interface the KCL to your
+dynamodb stream.
+
+With that command running, you can go into the aws console and write a couple of entries into your dynamodb table.  You should
+see some activity being logged by the consumer.  You can see the dynamodb records being captured into application.log in the sample
+directory.
+
 ### Cleaning Up
 This sample application creates an [Amazon Kinesis][amazon-kinesis] stream, sends data to it, and creates a DynamoDB table to track the KCL application state. This will incur nominal costs to your AWS account, and continue to do so even when the sample app is finished. To stop being charged, delete these resources. Specifically, the sample application creates following AWS resources:
 
@@ -232,7 +255,7 @@ Log into an Amazon EC2 instance running Amazon Linux, then perform the following
     sudo yum install nodejs npm --enablerepo=epel
     sudo yum install git
     # clone the git repository to work with the samples
-    git clone https://github.com/awslabs/amazon-kinesis-client-nodejs.git kclnodejs
+    git clone https://github.com/awslabs/amazon-kinesis-client-node.git kclnodejs
     cd kclnodejs/samples/basic_sample/producer/
     # download dependencies
     npm install
@@ -271,11 +294,6 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
-
-### Release 0.6.0 (December 12, 2016)
-* Updated the dependency on [Amazon Kinesis Client for Java][amazon-kcl-github] to 1.7.2.
-  * PR #23
-  * PR #24
 
 ### Release 0.5.0 (March 26, 2015)
 * The `aws-kcl` npm module allows implementation of record processors in Node.js using the Amazon KCL [MultiLangDaemon][multi-lang-daemon].

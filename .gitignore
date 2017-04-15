@@ -3,4 +3,6 @@
 /lib/jars
 /node_modules
 *.log
-.idea
+Dockerfile
+RUN-TEST.sh
+samples/ddb_stream_sample/consumer/sample.my.properties

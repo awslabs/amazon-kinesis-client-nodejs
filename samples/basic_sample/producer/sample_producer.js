@@ -98,7 +98,7 @@ function sampleProducer(kinesis, config) {
         }
         var count = 0;
         while (count < 10) {
-          setTimeout(_writeToKinesis(), 1000);
+          setTimeout(_writeToKinesis, 1000);
           count++;
         }
       });

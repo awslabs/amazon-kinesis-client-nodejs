@@ -74,6 +74,7 @@ function recordProcessor() {
     },
 
     shutdown: function(shutdownInput, completeCallback) {
+      log.info('Shutdown is called.')
       // Checkpoint should only be performed when shutdown reason is TERMINATE.
       if (shutdownInput.reason !== 'TERMINATE') {
         completeCallback();

@@ -39,6 +39,7 @@ var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-kinesis', '1.11.151'),
   getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-kms', '1.11.151'),
   getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-s3', '1.11.151'),
+  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-sts', '1.11.151'),
   getMavenPackageInfo('com.amazonaws', 'amazon-kinesis-client', '1.7.6'),
   getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-databind', '2.6.6'),
   getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-core', '2.6.6'),
@@ -47,7 +48,12 @@ var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('org.apache.httpcomponents', 'httpclient', '4.5.2'),
   getMavenPackageInfo('org.apache.httpcomponents', 'httpcore', '4.4.4'),
   getMavenPackageInfo('com.google.guava', 'guava', '18.0'),
-  getMavenPackageInfo('com.google.protobuf', 'protobuf-java', '2.6.1')
+  getMavenPackageInfo('com.google.protobuf', 'protobuf-java', '2.6.1'),
+  getMavenPackageInfo('org.slf4j', 'log4j-over-slf4j', '1.7.21'),
+  getMavenPackageInfo('org.slf4j', 'slf4j-simple', '1.7.21'),
+  getMavenPackageInfo('org.slf4j', 'slf4j-api', '1.7.21'),
+  getMavenPackageInfo('org.slf4j', 'jcl-over-slf4j', '1.7.21')
+  // getMavenPackageInfo('ch.qos.logback', 'logback-classic', '1.1.7')
 ];
 
 var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '..', 'lib', 'jars'));

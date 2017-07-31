@@ -66,6 +66,12 @@ function recordProcessor() {
       });
     },
 
+    shutdownRequested: function(shutdownRequestedInput, completeCallback) {
+      shutdownRequestedInput.checkpointer.checkpoint(function (err) {
+        completeCallback();
+      });
+    },
+
     shutdown: function(shutdownInput, completeCallback) {
       // Checkpoint should only be performed when shutdown reason is TERMINATE.
       if (shutdownInput.reason !== 'TERMINATE') {

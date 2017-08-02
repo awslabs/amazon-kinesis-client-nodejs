@@ -151,7 +151,7 @@ Before you begin, Node.js and NPM must be installed on your system. For download
 
 To get the sample KCL application and bootstrap script, you need git.
 
-Amazon KCL for Node.js uses [MultiLangDaemon][multi-lang-daemon] provided by [Amazon KCL for Java][amazon-kcl-github]. You also need Java version 1.7 or higher installed.
+Amazon KCL for Node.js uses [MultiLangDaemon][multi-lang-daemon] provided by [Amazon KCL for Java][amazon-kcl-github]. You also need Java version 1.8 or higher installed.
 
 ### Setting Up the Environment
 Before running the samples, make sure that your environment is configured to allow the samples to use your [AWS Security Credentials](http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html), which are used by [MultiLangDaemon][multi-lang-daemon] to interact with AWS services.
@@ -225,7 +225,7 @@ This sample application creates an [Amazon Kinesis][amazon-kinesis] stream, send
 You can delete these using the AWS Management Console.
 
 ## Running on Amazon EC2
-Log into an Amazon EC2 instance running Amazon Linux, then perform the following steps to prepare your environment for running the sample application. Note the version of Java that ships with Amazon Linux can be found at `/usr/bin/java` and should be 1.7 or greater.
+Log into an Amazon EC2 instance running Amazon Linux, then perform the following steps to prepare your environment for running the sample application. Note the version of Java that ships with Amazon Linux can be found at `/usr/bin/java` and should be 1.8 or greater.
 
 ```sh
     # install node.js, npm and git

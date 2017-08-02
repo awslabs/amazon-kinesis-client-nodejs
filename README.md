@@ -274,10 +274,12 @@ In this release, we have abstracted these implementation details away and expose
 
 ### Release 0.7.0 (August 2, 2017)
 * Updated the dependency on [Amazon Kinesis Client for Java][amazon-kcl-github] to 1.8.1.
+* Added the feature for graceful shutdown.
 * Support for timeout calls to MultiLang Daemon.
-  If the record processor doesn't respond in the given time the Java processor is terminated. The timeout can be set by adding `timeoutInSeconds = <timeout value>`. The default is set to no timeout.
-  __Updating minimum requirement for the JDK version to 8__
-  __Setting this value will cause your application to exit suddenly, make sure to have automated restarts in place.__
+    If the record processor doesn't respond in the given time the Java processor is terminated.
+    The timeout for the this can be set by adding `timeoutInSeconds = <timeout value>`. The default for this is no timeout.  
+      __Setting this can cause the KCL to exit suddenly, before using this ensure that you have an automated restart for your application__  
+      __Updating minimum requirement for the JDK version to 8__
 
 ### Release 0.6.0 (December 12, 2016)
 * Updated the dependency on [Amazon Kinesis Client for Java][amazon-kcl-github] to 1.7.2.

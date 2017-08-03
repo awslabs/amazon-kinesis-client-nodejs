@@ -19,8 +19,7 @@ permissions and limitations under the License.
 
 
 var fs = require('fs');
-var http = require('http');
-var https = require('https');
+var request = require('request');
 var path = require('path');
 var program = require('commander');
 var spawn = require('child_process').spawn;
@@ -52,7 +51,6 @@ var MAVEN_PACKAGE_LIST = [
 
 var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '..', 'lib', 'jars'));
 var MULTI_LANG_DAEMON_CLASS = 'com.amazonaws.services.kinesis.multilang.MultiLangDaemon';
-var MAX_HTTP_REDIRECT_FOLLOW = 3;
 
 
 function bootstrap() {
@@ -163,27 +161,11 @@ function downloadMavenPackage(mavenPackage, destinationDirectory, callback) {
 }
 
 function httpDownloadFile(requestUrl, destinationFile, redirectCount, callback) {
-  if (redirectCount >= MAX_HTTP_REDIRECT_FOLLOW) {
-    callback('Reached maximum redirects. ' + requestUrl + ' could not be downloaded.');
-    return;
-  }
-  var protocol = (url.parse(requestUrl).protocol === 'https' ? https : http);
-  var options = {
-    hostname: url.parse(requestUrl).hostname,
-    path: url.parse(requestUrl).path,
-    agent: false
-  };
-  var request = protocol.get(options, function(response) {
+  request.get(requestUrl).on('response', function(response) {
     // Non-2XX response.
     if (response.statusCode > 300) {
-      if (response.statusCode > 300 && response.statusCode < 400 && response.headers.location) {
-        httpDownloadFile(response.headers.location, destinationFile, redirectCount + 1, callback);
-        return;
-      }
-      else {
-        callback(requestUrl + ' could not be downloaded: ' + response.statusCode);
-        return;
-      }
+      callback(requestUrl + ' could not be downloaded: ' + response.statusCode);
+      return;
     }
     else {
       var destinationFileStream = fs.createWriteStream(destinationFile);
@@ -204,7 +186,7 @@ function httpDownloadFile(requestUrl, destinationFile, redirectCount, callback) 
   }).on('error', function(err) {
     fs.unlink(destinationFile);
     callback(err);
-  });
+  }).end();
 }
 
 function getMavenPackageUrlInfo(mavenPackage) {

@@ -20,7 +20,8 @@
     "clean": "grunt clean",
     "test": "grunt test",
     "release": "grunt release",
-    "doc": "grunt jsdoc"
+    "doc": "grunt jsdoc",
+    "flow": "flow"
   },
   "dependencies": {
     "commander": "~2.6.0",
@@ -29,6 +30,8 @@
   "devDependencies": {
     "async": "~0.9.0",
     "aws-sdk": "2.x",
+    "babel-cli": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
     "blanket": "^1.1.5",
     "chai": "^1.10.0",
     "grunt": "~0.4.5",

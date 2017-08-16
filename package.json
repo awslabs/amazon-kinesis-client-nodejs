@@ -24,7 +24,6 @@
     "flow": "flow"
   },
   "dependencies": {
-    "aws-kcl": "^0.7.0",
     "commander": "~2.6.0",
     "machina": "~1.0.0-1",
     "nconf": "^0.8.4",

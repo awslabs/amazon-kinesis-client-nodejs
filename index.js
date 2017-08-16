@@ -17,7 +17,7 @@ permissions and limitations under the License.
 
 var config = require('./config.js');
 var util = require('util');
-var kcl = require("aws-kcl");
+var kcl = require("./lib/kcl/kcl_process");
 var logger = global.appLogger;
 
 /**

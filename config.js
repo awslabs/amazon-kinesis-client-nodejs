@@ -8,7 +8,7 @@ nconf.env(['USER','LOG_LEVEL','LOG_FOLDER'])
    .file('common',path.join(__dirname, './config/config.common.json'))
 var options = {};
 
-var logFilePath = nconf.get('LOG_FOLDER');
+var logFilePath = nconf.get('LOG_FILE_PATH');
 var user = nconf.get('USER');
 if (user) options.user = user;
 var logLevel = nconf.get('LOG_LEVEL');

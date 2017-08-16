@@ -1,0 +1,1 @@
+../../fs-config/winston.config.js

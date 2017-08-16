@@ -3,11 +3,12 @@ var nconf = require('nconf');
 var winston = require('winston');
 var path = require('path');
 
-nconf.env(['USER','LOG_LEVEL'])
+nconf.env(['USER','LOG_LEVEL','LOG_FOLDER'])
    .file('config',path.join(__dirname, './config/config.json'))
    .file('common',path.join(__dirname, './config/config.common.json'))
 var options = {};
 
+var logFilePath = nconf.get('LOG_FOLDER');
 var user = nconf.get('USER');
 if (user) options.user = user;
 var logLevel = nconf.get('LOG_LEVEL');
@@ -20,7 +21,7 @@ if (!logLevel) {
     logLevel = 'VERBOSE';
 }
 
-logger = require('./config/winston.config.js')(winston,logLevel,['file']);
+logger = require('./config/winston.config.js')(winston,logLevel,['file'],logFilePath);
 global.appLogger = logger;
 module.exports = {
     DEFAULTS: options,

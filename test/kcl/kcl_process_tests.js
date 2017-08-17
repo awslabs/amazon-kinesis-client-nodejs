@@ -21,7 +21,7 @@ var expect = require('chai').expect;
 var sinon = require('sinon');
 var util = require('util');
 
-var kcl = require('../..');
+var kcl = require('../../lib/kcl/kcl_process.js');
 
 function RecordProcessor() {}
 

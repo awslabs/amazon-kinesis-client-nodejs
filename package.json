@@ -27,6 +27,7 @@
     "commander": "~2.6.0",
     "machina": "~1.0.0-1",
     "nconf": "^0.8.4",
+    "stdout-stream": "^1.4.0",
     "winston": "^2.3.1"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 {
-  "name": "aws-kcl",
+  "name": "fk-aws-kcl",
   "description": "Kinesis Client Libray (KCL) in Node.js.",
   "version": "0.7.0",
   "author": {
@@ -20,16 +20,22 @@
     "clean": "grunt clean",
     "test": "grunt test",
     "release": "grunt release",
-    "doc": "grunt jsdoc"
+    "doc": "grunt jsdoc",
+    "flow": "flow"
   },
   "dependencies": {
     "commander": "~2.6.0",
-    "machina": "~1.0.0-1"
+    "machina": "~1.0.0-1",
+    "nconf": "^0.8.4",
+    "stdout-stream": "^1.4.0",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "async": "~0.9.0",
     "aws-sdk": "2.x",
-    "blanket": "~1.1.5",
+    "babel-cli": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "blanket": "^1.1.5",
     "chai": "^1.10.0",
     "grunt": "~0.4.5",
     "grunt-cli": "~0.1.13",

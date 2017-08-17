@@ -104,11 +104,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  grunt.registerTask('default', ['jshint', 'mochaTest']);
+  grunt.registerTask('default', ['mochaTest']);
   grunt.registerTask('build', 'compile');
-  grunt.registerTask('compile', ['jshint']);
   // clean task already defined above.
   grunt.registerTask('doc', 'jsdoc');
-  grunt.registerTask('test', ['jshint', 'mochaTest']);
-  grunt.registerTask('release', ['jshint', 'mochaTest', 'jsdoc']);
+  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('release', ['mochaTest', 'jsdoc']);
 };

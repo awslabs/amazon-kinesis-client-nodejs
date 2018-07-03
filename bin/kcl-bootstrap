@@ -217,7 +217,7 @@ function getMavenPackageUrlInfo(mavenPackage) {
   urlParts.push(mavenPackage.version);
   urlParts.push(fileName);
   return {
-    'url': "http://search.maven.org/remotecontent?filepath=" + urlParts.join('/'),
+    'url': "https://search.maven.org/remotecontent?filepath=" + urlParts.join('/'),
     'fileName': fileName
   };
 }

@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "commander": "~2.6.0",
-    "machina": "~1.0.0-1"
+    "machina": "~1.0.0-1",
+    "proxy-agent": "^3.0.1"
   },
   "devDependencies": {
     "async": "~0.9.0",

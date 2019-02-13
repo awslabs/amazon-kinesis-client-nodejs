@@ -26,7 +26,7 @@ var program = require('commander');
 var spawn = require('child_process').spawn;
 var url = require('url');
 var util = require('util');
-
+var proxy = require('proxy-agent');
 
 var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('com.amazonaws', 'amazon-kinesis-client', '1.9.3'),
@@ -178,8 +178,9 @@ function httpDownloadFile(requestUrl, destinationFile, redirectCount, callback) 
   var options = {
     hostname: url.parse(requestUrl).hostname,
     path: url.parse(requestUrl).path,
-    agent: false
+    agent: process.env.HTTP_PROXY ? new proxy( process.env.HTTP_PROXY ) : false
   };
+
   var request = protocol.get(options, function(response) {
     // Non-2XX response.
     if (response.statusCode > 300) {

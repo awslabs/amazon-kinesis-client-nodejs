@@ -8,3 +8,4 @@ Gruntfile.js
 /conf
 /samples
 /test
+.idea/*

@@ -1,7 +1,7 @@
 {
   "name": "aws-kcl",
   "description": "Kinesis Client Libray (KCL) in Node.js.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": {
     "name": "Amazon Web Services",
     "url": "http://aws.amazon.com/"
@@ -49,12 +49,7 @@
   "bugs": {
     "url": "https://github.com/awslabs/amazon-kinesis-client-nodejs/issues"
   },
-  "licenses": [
-    {
-      "type": "Amazon Software License",
-      "url": "https://github.com/awslabs/amazon-kinesis-client-nodejs/blob/master/LICENSE.txt"
-    }
-  ],
+  "license": "Amazon Software License",
   "keywords": [
     "api",
     "amazon",

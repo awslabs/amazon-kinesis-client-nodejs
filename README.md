@@ -272,6 +272,15 @@ In this release, we have abstracted these implementation details away and expose
 
 ## Release Notes
 
+### Release 0.8.0 (February 12, 2019)
+* Updated the dependency on [Amazon Kinesis Client for Java][amazon-kcl-github] to 1.9.3
+  * This adds support for ListShards API. This API is used in place of DescribeStream API to provide more throughput during ShardSyncTask. Please consult the [AWS Documentation for ListShards](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_ListShards.html) for more information.
+    * ListShards supports higher call rate, which should reduce instances of throttling when attempting to synchronize the shard list.
+    * __WARNING: `ListShards` is a new API, and may require updating any explicit IAM policies__
+  * [PR #59](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/59)
+* Changed to now download jars from Maven using `https`.
+  * [PR #59](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/59)
+
 ### Release 0.7.0 (August 2, 2017)
 * Updated the dependency on [Amazon Kinesis Client for Java][amazon-kcl-github] to 1.8.1.  
 This adds support for setting a timeout when dispatching records to the node.js record processor.

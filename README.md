@@ -274,6 +274,29 @@ In this release, we have abstracted these implementation details away and expose
 
 ## Release Notes
 
+### Release 2.0.0 (March 6, 2019)
+* Added support for [Enhanced Fan-Out](https://aws.amazon.com/blogs/aws/kds-enhanced-fanout/).  
+  Enhanced Fan-Out provides dedicated throughput per stream consumer, and uses an HTTP/2 push API (SubscribeToShard) to deliver records with lower latency.
+* Updated the Amazon Kinesis Client Library for Java to version 2.1.2.
+  * Version 2.1.2 uses 4 additional Kinesis API's  
+    __WARNING: These additional API's may require updating any explicit IAM policies__
+    * [`RegisterStreamConsumer`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_RegisterStreamConsumer.html)
+    * [`SubscribeToShard`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_SubscribeToShard.html)
+    * [`DescribeStreamConsumer`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStreamConsumer.html)
+    * [`DescribeStreamSummary`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStreamSummary.html)
+  * For more information about Enhanced Fan-Out with the Amazon Kinesis Client Library please see the [announcement](https://aws.amazon.com/blogs/aws/kds-enhanced-fanout/) and [developer documentation](https://docs.aws.amazon.com/streams/latest/dev/introduction-to-enhanced-consumers.html).
+* Added support for the newer methods to the [`KCLManager`](https://github.com/awslabs/amazon-kinesis-client-nodejs/blob/a2be81a3bd4ccca7f68b616ebc416192c3be9d0e/lib/kcl/kcl_manager.js).  
+  While the original `shutdown` method will continue to work it's recommended to upgrade to the newer interface.
+  * The `shutdown` has been replaced by `leaseLost` and `shardEnded`.
+  * Added the `leaseLost` method which is invoked when a lease is lost.  
+    `leaseLost` replaces `shutdown` where `shutdownInput.reason` was `ZOMBIE`.
+  * Added the `shardEnded` method which is invoked when all records from a split or merge have been processed.  
+    `shardEnded`  replaces `shutdown` where `shutdownInput.reason` was `TERMINATE`.
+* Updated the AWS Java SDK version to 2.4.0
+* MultiLangDaemon now provides logging using Logback.
+  * MultiLangDaemon supports custom configurations for logging via a Logback XML configuration file.
+  * The `kcl-bootstrap` program was been updated to accept either `-l` or `--log-configuration` to provide a Logback XML configuration file.
+
 ### Release 0.8.0 (February 12, 2019)
 * Updated the dependency on [Amazon Kinesis Client for Java][amazon-kcl-github] to 1.9.3
   * This adds support for ListShards API. This API is used in place of DescribeStream API to provide more throughput during ShardSyncTask. Please consult the [AWS Documentation for ListShards](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_ListShards.html) for more information.

@@ -1,6 +1,6 @@
 @echo off
 
-REM     Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+REM     Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 REM     Licensed under the Amazon Software License (the "License").
 REM     You may not use this file except in compliance with the License.

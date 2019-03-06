@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /***
-Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 Licensed under the Amazon Software License (the "License").
 You may not use this file except in compliance with the License.
@@ -29,23 +29,28 @@ var util = require('util');
 
 
 var MAVEN_PACKAGE_LIST = [
-  getMavenPackageInfo('com.amazonaws', 'amazon-kinesis-client', '1.9.3'),
-  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-dynamodb', '1.11.438'),
-  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-s3', '1.11.438'),
-  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-kms', '1.11.438'),
-  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-core', '1.11.438'),
-  getMavenPackageInfo('org.apache.httpcomponents', 'httpclient', '4.5.5'),
-  getMavenPackageInfo('org.apache.httpcomponents', 'httpcore', '4.4.9'),
-  getMavenPackageInfo('commons-codec', 'commons-codec', '1.10'),
-  getMavenPackageInfo('software.amazon.ion', 'ion-java', '1.0.2'),
-  getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-databind', '2.6.7.1'),
-  getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-annotations', '2.6.0'),
-  getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-core', '2.6.7'),
-  getMavenPackageInfo('com.fasterxml.jackson.dataformat', 'jackson-dataformat-cbor', '2.6.7'),
-  getMavenPackageInfo('joda-time', 'joda-time', '2.8.1'),
-  getMavenPackageInfo('com.amazonaws', 'jmespath-java', '1.11.438'),
-  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-kinesis', '1.11.438'),
-  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-cloudwatch', '1.11.438'),
+  getMavenPackageInfo('software.amazon.kinesis', 'amazon-kinesis-client-multilang', '2.1.2'),
+  getMavenPackageInfo('software.amazon.kinesis', 'amazon-kinesis-client', '2.1.2'),
+  getMavenPackageInfo('software.amazon.awssdk', 'kinesis', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'aws-cbor-protocol', '2.4.0'),
+  getMavenPackageInfo('com.fasterxml.jackson.dataformat', 'jackson-dataformat-cbor', '2.9.8'),
+  getMavenPackageInfo('software.amazon.awssdk', 'aws-json-protocol', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'dynamodb', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'cloudwatch', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'netty-nio-client', '2.4.0'),
+  getMavenPackageInfo('io.netty', 'netty-codec-http', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-codec-http2', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-codec', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-transport', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-resolver', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-common', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-buffer', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-handler', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-transport-native-epoll', '4.1.32.Final'),
+  getMavenPackageInfo('io.netty', 'netty-transport-native-unix-common', '4.1.32.Final'),
+  getMavenPackageInfo('com.typesafe.netty', 'netty-reactive-streams-http', '2.0.0'),
+  getMavenPackageInfo('com.typesafe.netty', 'netty-reactive-streams', '2.0.0'),
+  getMavenPackageInfo('org.reactivestreams', 'reactive-streams', '1.0.2'),
   getMavenPackageInfo('com.google.guava', 'guava', '26.0-jre'),
   getMavenPackageInfo('com.google.code.findbugs', 'jsr305', '3.0.2'),
   getMavenPackageInfo('org.checkerframework', 'checker-qual', '2.5.2'),
@@ -53,12 +58,43 @@ var MAVEN_PACKAGE_LIST = [
   getMavenPackageInfo('com.google.j2objc', 'j2objc-annotations', '1.1'),
   getMavenPackageInfo('org.codehaus.mojo', 'animal-sniffer-annotations', '1.14'),
   getMavenPackageInfo('com.google.protobuf', 'protobuf-java', '2.6.1'),
-  getMavenPackageInfo('org.apache.commons', 'commons-lang3', '3.7'),
-  getMavenPackageInfo('commons-logging', 'commons-logging', '1.1.3')
+  getMavenPackageInfo('org.apache.commons', 'commons-lang3', '3.8.1'),
+  getMavenPackageInfo('org.slf4j', 'slf4j-api', '1.7.25'),
+  getMavenPackageInfo('io.reactivex.rxjava2', 'rxjava', '2.1.14'),
+  getMavenPackageInfo('software.amazon.awssdk', 'sts', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'aws-query-protocol', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'protocol-core', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'profiles', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'sdk-core', '2.4.0'),
+  getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-core', '2.9.8'),
+  getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-databind', '2.9.8'),
+  getMavenPackageInfo('software.amazon.awssdk', 'auth', '2.4.0'),
+  getMavenPackageInfo('software.amazon', 'flow', '1.7'),
+  getMavenPackageInfo('software.amazon.awssdk', 'http-client-spi', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'regions', '2.4.0'),
+  getMavenPackageInfo('com.fasterxml.jackson.core', 'jackson-annotations', '2.9.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'annotations', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'utils', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'aws-core', '2.4.0'),
+  getMavenPackageInfo('software.amazon.awssdk', 'apache-client', '2.4.0'),
+  getMavenPackageInfo('org.apache.httpcomponents', 'httpclient', '4.5.6'),
+  getMavenPackageInfo('commons-codec', 'commons-codec', '1.10'),
+  getMavenPackageInfo('org.apache.httpcomponents', 'httpcore', '4.4.10'),
+  getMavenPackageInfo('com.amazonaws', 'aws-java-sdk-core', '1.11.477'),
+  getMavenPackageInfo('commons-logging', 'commons-logging', '1.1.3'),
+  getMavenPackageInfo('software.amazon.ion', 'ion-java', '1.0.2'),
+  getMavenPackageInfo('joda-time', 'joda-time', '2.8.1'),
+  getMavenPackageInfo('ch.qos.logback', 'logback-classic', '1.2.3'),
+  getMavenPackageInfo('ch.qos.logback', 'logback-core', '1.2.3'),
+  getMavenPackageInfo('com.beust', 'jcommander', '1.72'),
+  getMavenPackageInfo('commons-io', 'commons-io', '2.6'),
+  getMavenPackageInfo('org.apache.commons', 'commons-collections4', '4.2'),
+  getMavenPackageInfo('commons-beanutils', 'commons-beanutils', '1.9.3'),
+  getMavenPackageInfo('commons-collections', 'commons-collections', '3.2.2')
 ];
 
 var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '..', 'lib', 'jars'));
-var MULTI_LANG_DAEMON_CLASS = 'com.amazonaws.services.kinesis.multilang.MultiLangDaemon';
+var MULTI_LANG_DAEMON_CLASS = 'software.amazon.kinesis.multilang.MultiLangDaemon';
 var MAX_HTTP_REDIRECT_FOLLOW = 3;
 
 
@@ -66,7 +102,7 @@ function bootstrap() {
   var args = parseArguments();
   downloadMavenPackages(MAVEN_PACKAGE_LIST, args.jarPath, function(err) {
     if (err) {
-      errorExit(util.format('Unable to download Multi-Language Daemon jar files from maven: %s', err));
+      errorExit(util.format('Unable to download MultiLangDaemon jar files from maven: %s', err));
     }
     startKinesisClientLibraryApplication(args);
   });
@@ -74,7 +110,8 @@ function bootstrap() {
 
 function parseArguments() {
   program
-    .option('-p, --properties <properties file>', 'properties file with multi-language daemon options')
+    .option('-p, --properties [properties file]', 'properties file with multi-language daemon options')
+    .option('-l, --log-configuration [logback.xml]', 'logback.xml to be used with MultiLangDaemon for logging (optional)')
     .option('-j, --java [java path]', 'path to java executable - defaults to using JAVA_HOME environment variable to get java path (optional)')
     .option('-c, --jar-path [jar path]', 'path where all multi-language daemon jar files will be downloaded (optional)')
     .option('-e, --execute', 'execute the KCL application')
@@ -82,6 +119,7 @@ function parseArguments() {
 
   var args = {
     'properties': program.properties,
+    'logConfiguration': program.logConfiguration ? program.logConfiguration: null,
     'java': (program.java ? program.java : (process.env.JAVA_HOME ? path.join(process.env.JAVA_HOME, 'bin', 'java') : null)),
     'jarPath': (program.jarPath ? program.jarPath : DEFAULT_JAR_PATH),
     'execute': program.execute
@@ -96,6 +134,9 @@ function parseArguments() {
   if (!isFile(args.java)) {
     invalidInvocationExit(program, 'Valid --java value is required or alternatively JAVA_HOME environment variable must be set.', true);
   }
+  if (args.logCofiguration && !isFile(args.logConfiguration)) {
+    invalidInvocationExit(program, args.logConfiguration + ' file does not exists. Specify a valid --log-configuration value', true);
+  }
   if (args.jarPath === DEFAULT_JAR_PATH) {
     createDirectory(args.jarPath);
   }
@@ -106,16 +147,21 @@ function parseArguments() {
 }
 
 function startKinesisClientLibraryApplication(options) {
-  var classpath = getClasspath(options).join(getPathDelimiter());
+  var classpath = '-cp ' + getClasspath(options).join(getPathDelimiter());
   var java = options.java;
-  var args = ['-cp', classpath, MULTI_LANG_DAEMON_CLASS, options.properties];
+  var propertiesFile = '--properties-file ' + options.properties;
+  var logConfiguration = '';
+  if (options.logConfiguration) {
+    logConfiguration = '--log-configuration ' + options.logConfiguration;
+  }
+  var args = [classpath, MULTI_LANG_DAEMON_CLASS, propertiesFile, logConfiguration];
   var cmd = java + ' ' + args.join(' ');
 
   console.log("==========================================================");
   console.log(cmd);
   console.log("==========================================================");
   if (options.execute) {
-    console.log("Starting Multi-Lang Daemon ...");
+    console.log("Starting MultiLangDaemon ...");
     spawn(java, args, { stdio: 'inherit' });
   }
 }

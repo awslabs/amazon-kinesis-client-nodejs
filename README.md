@@ -63,9 +63,6 @@ var recordProcessor = {
    *             array of records that are to be processed. Looks like -
    *             {"records":[<record>, <record>], "checkpointer":<Checkpointer>}
    *             where <record> format is specified above.
-   * @param {Checkpointer} processRecordsInput.checkpointer - A checkpointer
-   *             which accepts a `string` or `null` sequence number and a
-   *             callback.
    * @param {callback} completeCallback - The callback that must be invoked
    *             once all records are processed and checkpoint (optional) is
    *             complete.
@@ -106,38 +103,43 @@ var recordProcessor = {
   },
 
   /**
-   * Called by KCL to indicate that this record processor should shut down.
-   * After shutdown operation is complete, there will not be any more calls to
-   * any other functions of this record processor. Note that reason
-   * could be either TERMINATE or ZOMBIE. If ZOMBIE, clients should not
-   * checkpoint because there is possibly another record processor which has
-   * acquired the lease for this shard. If TERMINATE, then
-   * `checkpointer.checkpoint()` should be called to checkpoint at the end of
-   * the shard so that this processor will be shut down and new processors
-   * will be created for the children of this shard.
-   *
-   * @param {object} shutdownInput - Shutdown information. Looks like -
-   *             {"reason":"<TERMINATE|ZOMBIE>", "checkpointer":<Checkpointer>}
-   * @param {Checkpointer} shutdownInput.checkpointer - A checkpointer which
-   *             accepts a `string` or `null` sequence number and a callback.
-   * @param {callback} completeCallback - The callback that must be invoked
-   *             once shutdown-related operations are complete and checkpoint
-   *             (optional) is complete.
-   */
-  shutdown: function(shutdownInput, completeCallback) {
-    // Shutdown logic ...
+  * Called by the KCL to indicate that this record processor should shut down.
+  * After the lease lost operation is complete, there will not be any more calls to
+  * any other functions of this record processor. Clients should not attempt to
+  * checkpoint because the lease has been lost by this Worker.
+  * 
+  * @param {object} leaseLostInput - Lease lost information.
+  * @param {callback} completeCallback - The callback must be invoked once lease
+  *               lost operations are completed.
+  */
+  leaseLost: function(leaseLostInput, completeCallback) {
+    // Lease lost logic ...
+    completeCallback();
+  },
 
-    if (shutdownInput.reason !== 'TERMINATE') {
-      completeCallback();
-      return;
-    }
+  /**
+  * Called by the KCL to indicate that this record processor should shutdown.
+  * After the shard ended operation is complete, there will not be any more calls to
+  * any other functions of this record processor. Clients are required to checkpoint
+  * at this time. This indicates that the current record processor has finished
+  * processing and new record processors for the children will be created.
+  * 
+  * @param {object} shardEndedInput - ShardEnded information. Looks like -
+  *               {"checkpointer": <Checpointer>}
+  * @param {callback} completeCallback - The callback must be invoked once shard
+  *               ended operations are completed.
+  */
+  shardEnded: function(shardEndedInput, completeCallback) {
+    // Shard end logic ...
+    
     // Since you are checkpointing, only call completeCallback once the checkpoint
     // operation is complete.
-    shutdownInput.checkpointer.checkpoint(function(err) {
-      // In this example, regardless of error, we mark the shutdown operation
+    shardEndedInput.checkpointer.checkpoint(function(err) {
+      // In this example, regardless of the error, we mark the shutdown operation
       // complete.
       completeCallback();
     });
+    completeCallback();
   }
 };
 

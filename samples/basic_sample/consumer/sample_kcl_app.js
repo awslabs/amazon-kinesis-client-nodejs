@@ -15,9 +15,6 @@ permissions and limitations under the License.
 
 'use strict';
 
-
-var fs = require('fs');
-var path = require('path');
 var util = require('util');
 var kcl = require('../../..');
 var logger = require('../../util/logger');
@@ -66,20 +63,20 @@ function recordProcessor() {
       });
     },
 
-    shutdownRequested: function(shutdownRequestedInput, completeCallback) {
-      shutdownRequestedInput.checkpointer.checkpoint(function (err) {
+    leaseLost: function(leaseLostInput, completeCallback) {
+      log.info(util.format('Lease was lost for ShardId: %s', shardId));
+      completeCallback();
+    },
+
+    shardEnded: function(shardEndedInput, completeCallback) {
+      log.info(util.format('ShardId: %s has ended. Will checkpoint now.', shardId));
+      shardEndedInput.checkpointer.checkpoint(function(err) {
         completeCallback();
       });
     },
 
-    shutdown: function(shutdownInput, completeCallback) {
-      // Checkpoint should only be performed when shutdown reason is TERMINATE.
-      if (shutdownInput.reason !== 'TERMINATE') {
-        completeCallback();
-        return;
-      }
-      // Whenever checkpointing, completeCallback should only be invoked once checkpoint is complete.
-      shutdownInput.checkpointer.checkpoint(function(err) {
+    shutdownRequested: function(shutdownRequestedInput, completeCallback) {
+      shutdownRequestedInput.checkpointer.checkpoint(function (err) {
         completeCallback();
       });
     }

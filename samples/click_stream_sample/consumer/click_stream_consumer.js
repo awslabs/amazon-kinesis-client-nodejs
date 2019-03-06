@@ -162,25 +162,29 @@ function clickStreamProcessor(emitter, cfg) {
     /**
      * Called by the KCL to indicate that this record processor should shut down.
      * After the shutdown operation is complete, there will not be any more calls to
-     * any other functions of this record processor. Note that  the shutdown reason
-     * could be either TERMINATE or ZOMBIE. If ZOMBIE, clients should not
+     * any other functions of this record processor. If lease is lost, clients should not
      * checkpoint because there is possibly another record processor which has
-     * acquired the lease for this shard. If TERMINATE, then
+     * acquired the lease for this shard.
+     */
+    leaseLost: function(leaseLostInput, completeCallback) {
+      completeCallback();
+    },
+
+    /**
+     * Called by the KCL to indicate that this record processor should shut down.
+     * After the shutdown operation is complete, there will not be any more calls to
+     * any other functions of this record processor. If shard has ended, then
      * checkpointer.checkpoint() should be called to checkpoint at the end of
      * the shard so that this processor will be shut down and new processors
      * will be created for the children of this shard.
      */
-    shutdown: function(shutdownInput, completeCallback) {
-      if (shutdownInput.reason !== 'TERMINATE') {
-        completeCallback();
-        return;
-      }
+    shardEnded: function(shardEndedInput, completeCallback) {
       // Make sure to emit all remaining buffered data to S3 before shutting down.
       commitQueue.push({
         key: shardId + '/' + buffer.getFirstSequenceNumber() + '-' + buffer.getLastSequenceNumber(),
         sequenceNumber: buffer.getLastSequenceNumber(),
         data: buffer.readAndClearRecords(),
-        checkpointer: shutdownInput.checkpointer
+        checkpointer: shardEndedInput.checkpointer
       }, function(error) {
         if (error) {
           log.error(util.format('Received error while shutting down: %s', error));

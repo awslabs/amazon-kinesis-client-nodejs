@@ -14,6 +14,7 @@
   "eqnull"          : true,
   "strict"          : true,
   "node"            : true,
+  "esversion"       : 6,
   "globals"     : {
     /* MOCHA */
     "describe"      : false,

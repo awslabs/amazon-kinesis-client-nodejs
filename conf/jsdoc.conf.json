@@ -11,7 +11,7 @@
     "outputSourcePath"      : false,
     "systemName"            : "Amazon Kinesis Client Library in Node.js",
     "footer"                : "Amazon Kinesis Client Library in Node.js",
-    "copyright"             : "Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.",
+    "copyright"             : "Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.",
     "navType"               : "vertical",
     "theme"                 : "cosmo",
     "linenums"              : true,

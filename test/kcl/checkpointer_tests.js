@@ -1,5 +1,5 @@
 /***
-Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 Licensed under the Amazon Software License (the "License").
 You may not use this file except in compliance with the License.
@@ -26,8 +26,12 @@ var KCLManager = require('../../lib/kcl/kcl_manager');
 
 describe('checkpointer_tests', function() {
   var sandbox = null;
-  var kclManager = new KCLManager(null, process.stdin, process.stdout, process.stderr);
+  var kclManager = new KCLManager({}, process.stdin, process.stdout, process.stderr);
   var checkpointer = new Checkpointer(kclManager);
+
+  before(function() {
+    kclManager.run();
+  });
 
   beforeEach(function() {
     sandbox = sinon.sandbox.create();

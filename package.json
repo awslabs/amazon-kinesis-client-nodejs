@@ -48,7 +48,7 @@
   "bugs": {
     "url": "https://github.com/awslabs/amazon-kinesis-client-nodejs/issues"
   },
-  "license": "Amazon Software License",
+  "license": "Apache-2.0",
   "keywords": [
     "api",
     "amazon",

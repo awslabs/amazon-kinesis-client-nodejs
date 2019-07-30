@@ -341,3 +341,7 @@ __Updating minimum requirement for the JDK version to 8__
 [kinesis-forum]: http://developer.amazonwebservices.com/connect/forum.jspa?forumID=169
 [aws-console]: http://aws.amazon.com/console/
 [jvm]: http://java.com/en/download/
+
+## License
+
+This library is licensed under the Apache 2.0 License.

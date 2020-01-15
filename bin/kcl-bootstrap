@@ -210,7 +210,7 @@ function httpDownloadFile(requestUrl, destinationFile, redirectCount, callback) 
     callback('Reached maximum redirects. ' + requestUrl + ' could not be downloaded.');
     return;
   }
-  var protocol = (url.parse(requestUrl).protocol === 'https' ? https : http);
+  var protocol = (url.parse(requestUrl).protocol === 'https:' ? https : http);
   var options = {
     hostname: url.parse(requestUrl).hostname,
     path: url.parse(requestUrl).path,

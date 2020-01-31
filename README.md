@@ -274,6 +274,15 @@ In this release, we have abstracted these implementation details away and expose
 
 ## Release Notes
 
+### Release 2.1.0 (January 31, 2020)
+[Milestone #4](https://github.com/awslabs/amazon-kinesis-client-nodejs/milestone/4)
+* Fixing bootstrap to use HTTPS
+  * [PR #75](https://github.com/awslabs/amazon-kinesis-client/pull/679)
+* Adding support for Win32 platform
+  * [PR #67](https://github.com/awslabs/amazon-kinesis-client/pull/668)
+* Relicensing to Apache-2.0
+  * [PR #69](https://github.com/awslabs/amazon-kinesis-client/pull/667)
+
 ### Release 2.0.0 (March 6, 2019)
 * Added support for [Enhanced Fan-Out](https://aws.amazon.com/blogs/aws/kds-enhanced-fanout/).  
   Enhanced Fan-Out provides dedicated throughput per stream consumer, and uses an HTTP/2 push API (SubscribeToShard) to deliver records with lower latency.

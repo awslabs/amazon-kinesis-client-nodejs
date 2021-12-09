@@ -95,7 +95,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-transport-native-unix-common</artifactId>
-            <version>4.1.32.Final</version>
+            <version>4.1.71.Final</version>
         </dependency>
         <dependency>
             <groupId>com.typesafe.netty</groupId>
@@ -155,7 +155,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
+            <version>1.7.32</version>
         </dependency>
         <dependency>
             <groupId>io.reactivex.rxjava2</groupId>

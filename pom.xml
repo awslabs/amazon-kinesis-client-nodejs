@@ -75,7 +75,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-common</artifactId>
-            <version>4.1.32.Final</version>
+            <version>4.1.71.Final</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>

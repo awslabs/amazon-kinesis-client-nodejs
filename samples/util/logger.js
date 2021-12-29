@@ -11,8 +11,8 @@ function logger() {
   var logDir = process.env.NODE_LOG_DIR !== undefined ? process.env.NODE_LOG_DIR : '.';
 
   var config = {
-    "appenders": [
-      {
+    appenders: {
+      default: {
         "type": "file",
         "filename": logDir + "/" + "application.log",
         "pattern": "-yyyy-MM-dd",
@@ -20,17 +20,20 @@ function logger() {
           "type": "pattern",
           "pattern": "%d (PID: %x{pid}) %p %c - %m",
           "tokens": {
-            "pid" : function() { return process.pid; }
+            "pid": function () { return process.pid; }
           }
         }
-      }
-    ]
+      },
+    },
+    categories: {
+      default: { appenders: ['default'], level: 'info' },
+    }
   };
 
   log4js.configure(config, {});
 
   return {
-    getLogger: function(category) {
+    getLogger: function (category) {
       return log4js.getLogger(category);
     }
   };

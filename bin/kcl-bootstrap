@@ -12,23 +12,25 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 var path = require('path');
-var program = require('commander');
 var spawn = require('child_process').spawn;
 var convert = require('xml-js');
 var url = require('url');
 var util = require('util');
+const { program } = require('commander');
 
 const mavenFile = fs.readFileSync(path.join(__dirname, '..', 'pom.xml'), 'utf8');
 const mavenJson = JSON.parse(convert.xml2json(mavenFile, { compact: true }));
-const dependencyArray = mavenJson.project.dependencies.dependency
+const dependencyArray = mavenJson.project.dependencies.dependency;
+const propertyDict = Object.fromEntries(Object.entries(mavenJson.project.properties).map(([k, v]) => [`$\{${k}\}`, v._text]));
 
 // Read Java dependencies from pom.xml
-const MAVEN_PACKAGE_LIST = dependencyArray.map(dep => getMavenPackageInfo(dep.groupId._text, dep.artifactId._text, dep.version._text));
+const MAVEN_PACKAGE_LIST = dependencyArray.map(
+  dep => getMavenPackageInfo(dep.groupId._text, dep.artifactId._text, propertyDict[dep.version._text] || dep.version._text)
+);
 
 var DEFAULT_JAR_PATH = path.resolve(path.join(__dirname, '..', 'lib', 'jars'));
 var MULTI_LANG_DAEMON_CLASS = 'software.amazon.kinesis.multilang.MultiLangDaemon';
 var MAX_HTTP_REDIRECT_FOLLOW = 3;
-
 
 function bootstrap() {
   var args = parseArguments();
@@ -52,13 +54,14 @@ function parseArguments() {
     .option('-c, --jar-path [jar path]', 'path where all multi-language daemon jar files will be downloaded (optional)')
     .option('-e, --execute', 'execute the KCL application')
     .parse(process.argv);
-
+  
+  const options = program.opts();
   var args = {
-    'properties': program.properties,
-    'logConfiguration': program.logConfiguration ? program.logConfiguration : null,
-    'java': (program.java ? program.java : (process.env.JAVA_HOME ? createJavaHomeExecutablePath() : null)),
-    'jarPath': (program.jarPath ? program.jarPath : DEFAULT_JAR_PATH),
-    'execute': program.execute
+    'properties': options.properties,
+    'logConfiguration': options.logConfiguration ? options.logConfiguration : null,
+    'java': (options.java ? options.java : (process.env.JAVA_HOME ? createJavaHomeExecutablePath() : null)),
+    'jarPath': (options.jarPath ? options.jarPath : DEFAULT_JAR_PATH),
+    'execute': options.execute
   };
 
   if (!args.properties) {

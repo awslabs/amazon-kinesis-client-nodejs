@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 var chai = require('chai');
 var expect = chai.expect;
+var should = chai.should();
 var sinon = require('sinon');
 var util = require('util');
 
@@ -83,10 +84,10 @@ describe('io_handler_tests', function() {
     var callback = sinon.spy();
     ioHandler.on('line', callback);
     process.stdin.emit('data', 'line1\n');
-    expect(callback.calledOnce).to.be.true();
+    expect(callback.calledOnce).to.be.equal(true);
     ioHandler.destroy();
     process.stdin.emit('data', 'line2\n');
-    expect(callback.calledTwice).to.be.false();
+    expect(callback.calledTwice).to.be.equal(false);
     ioHandler.removeListener('line', callback);
     done();
   });

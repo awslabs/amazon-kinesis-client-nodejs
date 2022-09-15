@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 
 var chai = require('chai');
 var expect = chai.expect;
+var should = chai.should();
 var sinon = require('sinon');
 var util = require('util');
 
@@ -78,7 +79,7 @@ describe('action_handler_tests', function() {
 
   it('should write action to stdout', function(done) {
     actionHandler.sendAction({action : 'initialize', shardId : 'shardId-000001'}, function(err) {
-      expect(err).to.be.undefined();
+      should.equal(err, undefined);
       expect(stdoutHook.readLast()).to.equal('{"action":"initialize","shardId":"shardId-000001"}');
       done();
     });

@@ -5,10 +5,8 @@
 
 'use strict';
 
-var chai = require('chai');
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var util = require('util');
 
 var kcl = require('../..');
 
@@ -51,28 +49,28 @@ describe('kcl_process_tests', function () {
   var sandbox = null;
   var kclProcess = null;
 
-  var initialize = {action: 'initialize', shardId: 'shardId-000000000001'};
+  var initialize = { action: 'initialize', shardId: 'shardId-000000000001' };
   var initializeString = JSON.stringify(initialize) + '\n';
-  var initializeResponse = JSON.stringify({action: 'status', responseFor: initialize.action});
+  var initializeResponse = JSON.stringify({ action: 'status', responseFor: initialize.action });
 
   var processRecords = {
     action: 'processRecords',
-    records: [{'data': 'bWVvdw==', 'partitionKey': 'cat', 'sequenceNumber': '456'}]
+    records: [{ 'data': 'bWVvdw==', 'partitionKey': 'cat', 'sequenceNumber': '456' }]
   };
   var processRecordsString = JSON.stringify(processRecords) + '\n';
-  var processRecordsResponse = JSON.stringify({action: 'status', responseFor: processRecords.action});
+  var processRecordsResponse = JSON.stringify({ action: 'status', responseFor: processRecords.action });
 
-  var checkpoint = {action: 'checkpoint', sequenceNumber: '456'};
+  var checkpoint = { action: 'checkpoint', sequenceNumber: '456' };
   var checkpointString = JSON.stringify(checkpoint);
-  var checkpointResponse = JSON.stringify({action: checkpoint.action, checkpoint: checkpoint.sequenceNumber}) + '\n';
+  var checkpointResponse = JSON.stringify({ action: checkpoint.action, checkpoint: checkpoint.sequenceNumber }) + '\n';
 
-  var shardEnded = {action: 'shardEnded'};
+  var shardEnded = { action: 'shardEnded' };
   var shardEndedString = JSON.stringify(shardEnded) + '\n';
-  var shardEndedResponse = JSON.stringify({action: 'status', responseFor: shardEnded.action});
+  var shardEndedResponse = JSON.stringify({ action: 'status', responseFor: shardEnded.action });
 
   beforeEach(function () {
     kclProcess = kcl(new RecordProcessor());
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
   });
 
   afterEach(function () {
@@ -82,7 +80,7 @@ describe('kcl_process_tests', function () {
 
   it('should initialize kcl and send back response', function (done) {
     // Since we can't know when run() would finish processing all inputs, creating a stub for last call in the chain to force verification.
-    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction', function (data, callback) {
+    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction').callsFake(function (data, callback) {
       let dataString = JSON.stringify(data);
       console.log('Got response: ' + dataString);
       callback();
@@ -97,7 +95,7 @@ describe('kcl_process_tests', function () {
   });
 
   it('should process records, checkpoint and then send back response', function (done) {
-    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction', function (data, callback) {
+    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction').callsFake(function (data, callback) {
       let dataString = JSON.stringify(data);
       console.log('Got response: ' + dataString);
       callback();
@@ -121,7 +119,7 @@ describe('kcl_process_tests', function () {
   });
 
   it('should invoke shardEnd and send back response', function (done) {
-    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction', function (data, callback) {
+    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction').callsFake(function (data, callback) {
       let dataString = JSON.stringify(data);
       console.log('Got response: ' + dataString);
       expect(dataString).to.equal(shardEndedResponse);
@@ -135,7 +133,7 @@ describe('kcl_process_tests', function () {
 
   it('should process Initialize, one or more processRecords and shutdown in order', function (done) {
     // Since we can't know when run() would finish processing all inputs, creating a stub for last call in the chain to force verification !
-    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction', function (data, callback) {
+    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction').callsFake(function (data, callback) {
       let dataString = JSON.stringify(data);
       console.log('Got response: ' + dataString);
       callback();
@@ -175,7 +173,7 @@ describe('kcl_process_tests', function () {
 
   it('should process checkpoint error from MultiLangDaemon', function (done) {
     // Since we can't know when run() would finish processing all inputs, creating a stub for last call in the chain to force verification !
-    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction', function (data, callback) {
+    sandbox.stub(kclProcess._kclManager._actionHandler, 'sendAction').callsFake(function (data, callback) {
       let dataString = JSON.stringify(data);
       console.log('Got response: ' + dataString);
       callback();

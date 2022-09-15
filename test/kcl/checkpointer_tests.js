@@ -6,10 +6,8 @@ SPDX-License-Identifier: Apache-2.0
 'use strict';
 
 
-var chai = require('chai');
 var expect = require('chai').expect;
 var sinon = require('sinon');
-var util = require('util');
 
 var Checkpointer = require('../../lib/kcl/checkpointer');
 var KCLManager = require('../../lib/kcl/kcl_manager');
@@ -24,7 +22,7 @@ describe('checkpointer_tests', function() {
   });
 
   beforeEach(function() {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
   });
 
   afterEach(function() {
@@ -38,24 +36,24 @@ describe('checkpointer_tests', function() {
   it('should emit a checkpoint action and consume response action', function(done) {
     var seq = Math.floor((Math.random() * 1000000)).toString();
     // Mock KCLManager checkpoint and short-circuit dummy response.
-    sandbox.stub(kclManager, 'checkpoint', function(seq) {
+    sandbox.stub(kclManager, 'checkpoint').callsFake(function(seq) {
       checkpointer.onCheckpointerResponse(null, seq);
     });
 
     checkpointer.checkpoint(seq, function(err, seq) {
-      expect(err).to.be.null();
+      expect(err).to.be.equal(null);
       done();
     });
   });
 
   it('should emit a checkpoint action and consume response when no sequence number', function(done) {
-    sandbox.stub(kclManager, 'checkpoint', function(seq) {
-      expect(seq).to.be.null();
+    sandbox.stub(kclManager, 'checkpoint').callsFake(function(seq) {
+      expect(seq).to.be.equal(null);
       checkpointer.onCheckpointerResponse(null, seq);
     });
 
     checkpointer.checkpoint(function(err) {
-      expect(err).to.be.null();
+      expect(err).to.be.equal(null);
       done();
     });
   });
@@ -63,12 +61,12 @@ describe('checkpointer_tests', function() {
   it('should raise an error when error is received from MultiLangDaemon', function(done) {
     var seq = Math.floor((Math.random() * 1000000)).toString();
     // Mock KCLManager checkpoint and short-circuit dummy response.
-    sandbox.stub(kclManager, 'checkpoint', function(seq) {
+    sandbox.stub(kclManager, 'checkpoint').callsFake(function(seq) {
       checkpointer.onCheckpointerResponse('ThrottlingException', seq);
     });
 
     checkpointer.checkpoint(seq, function(err) {
-      expect(err).not.to.be.null();
+      expect(err).not.to.be.equal(null);
       expect(err).to.equal('ThrottlingException');
       done();
     });
@@ -77,8 +75,9 @@ describe('checkpointer_tests', function() {
   it('should raise an error on checkpoint when previous checkpoint is not complete', function(done) {
     var seq = Math.floor((Math.random() * 1000000)).toString();
     // Mock KCLManager checkpoint to have outstanding checkpoint.
-    sandbox.stub(kclManager, 'checkpoint', function(seq) {
+    sandbox.stub(kclManager, 'checkpoint').callsFake(function(seq) {
     });
+
     checkpointer.checkpoint(seq, function(err) {
     });
 

@@ -63,4 +63,4 @@ jobs:
       run: |
         kill -15 $subscriberPID
         sleep 10
-        cat *
+        cat samples/basic_sample/consumer/application.log

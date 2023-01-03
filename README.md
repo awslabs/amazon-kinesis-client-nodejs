@@ -273,9 +273,14 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 2.2.1 (January 3, 2023)
+* [PR #202](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/202) Keep Java dependencies in sync with the KCL V2.4.4
+  * Updated dependencies to match the v2.4.4 KCL Java release
+  * Updated slfj to resolve the logger's incompatibility problem 
+
 ### Release 2.2.0 (September 15, 2022)
 * [PR #165](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/165) Update Java dependencies  
-  * KCL and KCL-multilang are updated to the latest version 2.4.13
+  * KCL and KCL-multilang are updated to the latest version 2.4.3
 
 ### Release 2.1.0 (January 31, 2020)
 [Milestone #4](https://github.com/awslabs/amazon-kinesis-client-nodejs/milestone/4)

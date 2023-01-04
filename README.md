@@ -273,6 +273,9 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 2.2.2 (January 4, 2023)
+* [PR #207](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/207) Add endpoints-spi dependency
+
 ### Release 2.2.1 (January 3, 2023)
 * [PR #202](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/202) Keep Java dependencies in sync with the KCL V2.4.4
   * Updated dependencies to match the v2.4.4 KCL Java release

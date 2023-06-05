@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <awssdk.version>2.19.2</awssdk.version>
-        <aws-java-sdk.version>1.12.370</aws-java-sdk.version>
+        <aws-java-sdk.version>1.12.481</aws-java-sdk.version>
         <netty.version>4.1.86.Final</netty.version>
         <netty-reactive.version>2.0.6</netty-reactive.version>
         <fasterxml-jackson.version>2.13.4</fasterxml-jackson.version>

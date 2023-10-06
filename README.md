@@ -273,6 +273,9 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 2.2.2 (October 6, 2023) 
+* [PR #277](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/277) Bumps com.google.protobuf:protobuf-java from 3.21.5 to 3.21.7.
+
 ### Release 2.2.2 (January 4, 2023)
 * [PR #207](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/207) Add endpoints-spi dependency
 

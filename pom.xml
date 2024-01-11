@@ -136,6 +136,11 @@
             <version>${awssdk.version}</version>
         </dependency>
         <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>arns</artifactId>
+            <version>${awssdk.version}</version>
+        </dependency>           
+        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-codec-http</artifactId>
             <version>${netty.version}</version>
@@ -350,10 +355,5 @@
             <artifactId>commons-collections</artifactId>
             <version>3.2.2</version>
         </dependency>
-        <dependency>
-            <groupId>software.amazon.awssdk</groupId>
-            <artifactId>arns</artifactId>
-            <version>2.22.13</version>
-        </dependency>        
     </dependencies>
 </project> 

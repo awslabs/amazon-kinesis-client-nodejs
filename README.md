@@ -273,6 +273,10 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 2.2.4 (January 16, 2024)
+* [PR #298](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/298) Added dependency on aws-sdk arns
+* [PR #293](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/293) Updated logback-classic to 1.3.12
+
 ### Release 2.2.3 (December 18, 2023)
 * [PR #291](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/291) Updated KCL and KCL multilang to the latest version 2.5.4
 * [PR #284](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/284) Updated netty to 4.1.100.Final, fasterxml-jackson to 2.13.5, and guava to 32.1.1-jre

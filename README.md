@@ -273,7 +273,7 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
-### Release 2.2.3 (January 16, 2024)
+### Release 2.2.4 (January 16, 2024)
 * [PR #298](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/298) Added dependency on aws-sdk arns
 * [PR #293](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/293) Updated logback-classic to 1.3.12
 

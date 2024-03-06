@@ -39,7 +39,6 @@ function captureStream(stream) {
 }
 
 describe('io_handler_tests', function() {
-  this.timeout(5000);
   var stdoutHook = null;
   var stderrHook = null;
   // Github workflows doesn't write to process.stdin for unknown reasons, so using a new Stream

@@ -23,7 +23,7 @@
     "doc": "grunt jsdoc"
   },
   "dependencies": {
-    "commander": "~8.3.0",
+    "commander": "~12.0.0",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {

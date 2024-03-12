@@ -79,7 +79,7 @@ describe('action_handler_tests', function() {
 
   it('should write action to stdout', function(done) {
     actionHandler.sendAction({action : 'initialize', shardId : 'shardId-000001'}, function(err) {
-      should.equal(err, undefined);
+      should.equal(err, null);
       expect(stdoutHook.readLast()).to.equal('{"action":"initialize","shardId":"shardId-000001"}');
       done();
     });

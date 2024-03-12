@@ -8,9 +8,8 @@ SPDX-License-Identifier: Apache-2.0
 
 var chai = require('chai');
 var expect = chai.expect;
-var should = chai.should();
 var sinon = require('sinon');
-var util = require('util');
+var Stream = require('stream');
 
 var IOHandler = require('../../lib/kcl/io_handler');
 
@@ -42,7 +41,10 @@ function captureStream(stream) {
 describe('io_handler_tests', function() {
   var stdoutHook = null;
   var stderrHook = null;
-  var ioHandler = new IOHandler(process.stdin, process.stdout, process.stderr);
+  // Github workflows doesn't write to process.stdin for unknown reasons, so using a new Stream
+  const readableStream = new Stream.Readable();
+  readableStream._read = () => {}; // _read is required but can noop it
+  var ioHandler = new IOHandler(readableStream, process.stdout, process.stderr);
 
   beforeEach(function() {
     stdoutHook = captureStream(process.stdout);
@@ -64,7 +66,7 @@ describe('io_handler_tests', function() {
       ioHandler.removeAllListeners('line');
       done();
     });
-    process.stdin.emit('data', 'line1\n');
+    readableStream.emit('data', 'line1\n');
   });
 
   it('should write to stdout', function(done) {
@@ -83,10 +85,10 @@ describe('io_handler_tests', function() {
   it('should not read line after IO handler is destroyed', function(done) {
     var callback = sinon.spy();
     ioHandler.on('line', callback);
-    process.stdin.emit('data', 'line1\n');
+    readableStream.emit('data', 'line1\n');
     expect(callback.calledOnce).to.be.equal(true);
     ioHandler.destroy();
-    process.stdin.emit('data', 'line2\n');
+    readableStream.emit('data', 'line2\n');
     expect(callback.calledTwice).to.be.equal(false);
     ioHandler.removeListener('line', callback);
     done();

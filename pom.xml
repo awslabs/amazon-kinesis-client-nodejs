@@ -302,9 +302,9 @@
             <version>${aws-java-sdk.version}</version>
         </dependency>
         <dependency>
-            <groupId>software.amazon.ion</groupId>
-            <artifactId>ion-java</artifactId>
-            <version>1.5.1</version>
+          <groupId>com.amazon.ion</groupId>
+          <artifactId>ion-java</artifactId>
+          <version>1.11.4</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.glue</groupId>

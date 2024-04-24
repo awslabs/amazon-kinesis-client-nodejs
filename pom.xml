@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <properties>
+        <kcl.version>2.5.8</kcl.version>
         <awssdk.version>2.20.43</awssdk.version>
         <aws-java-sdk.version>1.12.512</aws-java-sdk.version>
         <netty.version>4.1.100.Final</netty.version>
@@ -13,12 +14,12 @@
         <dependency>
             <groupId>software.amazon.kinesis</groupId>
             <artifactId>amazon-kinesis-client-multilang</artifactId>
-            <version>2.5.5</version>
+            <version>${kcl.version}</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.kinesis</groupId>
             <artifactId>amazon-kinesis-client</artifactId>
-            <version>2.5.5</version>
+            <version>${kcl.version}</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>

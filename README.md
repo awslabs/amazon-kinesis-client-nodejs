@@ -273,6 +273,26 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 2.2.6 (April 25, 2024)
+* [PR #327](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/327) Upgraded amazon-kinesis-client from 2.5.5 to 2.5.8
+* [PR #329](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/329) Upgraded aws-sdk from 2.1562.0 to 2.1603.0
+* [PR #95](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/95) Upgraded jcommander from 1.72 to 1.82
+* [PR #271](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/271) Upgraded org.codehaus.mojo:animal-sniffer-annotations from 1.20 to 1.23
+* [PR #266](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/266) Upgraded com.amazonaws:aws-java-sdk-core from 1.12.370 to 1.12.512
+* [PR #313](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/313) Upgraded logback.version from 1.3.12 to 1.5.3
+* [PR #305](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/305) Upgraded org.slf4j:slf4j-api from 2.0.5 to 2.0.12
+* [PR #325](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/325) Upgraded mocha from 9.2.2 to 10.4.0
+* [PR #307](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/307) Upgraded com.google.protobuf:protobuf-java from 3.21.7 to 3.25.3
+* [PR #262](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/262) Upgraded checker-qual from 2.5.2 to 3.36.0
+* [PR #303](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/303) Upgraded commander from 8.3.0 to 12.0.0
+* [PR #287](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/287) Upgraded sinon from 14.0.2 to 17.0.1
+* [PR #318](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/318) Upgraded awssdk.version from 2.20.43 to 2.25.11
+* [PR #319](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/319) Upgraded org.reactivestreams:reactive-streams from 1.0.3 to 1.0.4
+* [PR #320](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/320) Upgraded netty-reactive.version from 2.0.6 to 2.0.12
+* [PR #330](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/330) Upgraded io.netty:netty-codec-http from 4.1.100.Final to 4.1.108.Final
+* [PR #331](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/331) Upgraded ion-java from 1.5.1 to 1.11.4
+* [PR #211](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/211) Upgraded fasterxml-jackson.version from 2.13.4 to 2.14.1
+
 ### Release 2.2.5 (February 29, 2024)
 * [PR #309](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/309) Updated amazon-kinesis-client and amazon-kinesis-client multilang from 2.5.4 to 2.5.5 and updated awssdk.version to match amazon-kinesis-client from 2.19.2 to 2.20.43
 

@@ -7,7 +7,7 @@
         <aws-java-sdk.version>1.12.512</aws-java-sdk.version>
         <netty.version>4.1.108.Final</netty.version>
         <netty-reactive.version>2.0.12</netty-reactive.version>
-        <fasterxml-jackson.version>2.14.1</fasterxml-jackson.version>
+        <fasterxml-jackson.version>2.17.0</fasterxml-jackson.version>
         <logback.version>1.5.3</logback.version>
     </properties>
     <dependencies>

@@ -273,6 +273,9 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 2.6.1 (January 22, 2025)
+* Upgraded amazon-kinesis-client from 2.2.6 to 2.6.1
+
 ### Release 2.2.6 (April 25, 2024)
 * [PR #327](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/327) Upgraded amazon-kinesis-client from 2.5.5 to 2.5.8
 * [PR #329](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/329) Upgraded aws-sdk from 2.1562.0 to 2.1603.0

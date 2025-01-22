@@ -158,7 +158,7 @@ Amazon KCL for Node.js uses [MultiLangDaemon][multi-lang-daemon] provided by [Am
 ### Setting Up the Environment
 Before running the samples, make sure that your environment is configured to allow the samples to use your [AWS Security Credentials](http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html), which are used by [MultiLangDaemon][multi-lang-daemon] to interact with AWS services.
 
-By default, the [MultiLangDaemon][multi-lang-daemon] uses the [DefaultAWSCredentialsProviderChain][DefaultAWSCredentialsProviderChain], so make your credentials available to one of the credentials providers in that provider chain. There are several ways to do this. You can provide credentials through a `~/.aws/credentials` file or through environment variables (**AWS\_ACCESS\_KEY\_ID** and **AWS\_SECRET\_ACCESS\_KEY**). If you're running on Amazon EC2, you can associate an IAM role with your instance with appropriate access.
+By default, the [MultiLangDaemon][multi-lang-daemon] uses the [DefaultCredentialsProvider][DefaultCredentialsProvider], so make your credentials available to one of the credentials providers in that provider chain. There are several ways to do this. You can provide credentials through a `~/.aws/credentials` file or through environment variables (**AWS\_ACCESS\_KEY\_ID** and **AWS\_SECRET\_ACCESS\_KEY**). If you're running on Amazon EC2, you can associate an IAM role with your instance with appropriate access.
 
 For more information about [Amazon Kinesis][amazon-kinesis] and the client libraries, see the
 [Amazon Kinesis documentation][amazon-kinesis-docs] as well as the [Amazon Kinesis forums][kinesis-forum].
@@ -392,7 +392,7 @@ __Updating minimum requirement for the JDK version to 8__
 [amazon-kinesis-python-github]: https://github.com/awslabs/amazon-kinesis-client-python
 [amazon-kinesis-ruby-github]: https://github.com/awslabs/amazon-kinesis-client-ruby
 [multi-lang-daemon]: https://github.com/awslabs/amazon-kinesis-client/blob/master/src/main/java/com/amazonaws/services/kinesis/multilang/package-info.java
-[DefaultAWSCredentialsProviderChain]: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/DefaultAWSCredentialsProviderChain.html
+[DefaultCredentialsProvider]: https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/auth/credentials/DefaultCredentialsProvider.html
 [kinesis-forum]: http://developer.amazonwebservices.com/connect/forum.jspa?forumID=169
 [aws-console]: http://aws.amazon.com/console/
 [jvm]: http://java.com/en/download/

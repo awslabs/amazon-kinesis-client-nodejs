@@ -271,8 +271,23 @@ In this release, we have abstracted these implementation details away and expose
 * [Amazon Kinesis documentation][amazon-kinesis-docs]
 * [Amazon Kinesis forum][kinesis-forum]
 
+## 🚨Important: Migration to Node KCL 2.3.0 (or later) with MultiLangDaemon - Credential Provider Changes Required
+Java KCL version 2.7.0 and later uses AWS SDK for Java 2.x instead of AWS SDK for Java 1.x. For the  KCL Node 2.x versions, 
+v2.3.0 is the first node release to use Java KCL 2.7.0. All MultiLangDaemon users upgrading from earlier versions must update
+their credential provider configuration in the `.properties` file to use credentials provider name for AWS SDK for Java 2.x. 
+Failure to do this will cause your multilang KCL application to fail during startup with credential provider construction errors. 
+Please check the following link for the credentials provider mapping and MultiLangDaemon credentials provider configuration guide.
+
+- [AWS SDK for Java 1.x to 2.x Credentials Provider Mapping](aws.amazon.com/sdk-for-java/latest/developer-guide/migration-client-credentials.html#credentials-changes-mapping)
+- [KCL Multilang Credentials Provider Configuration Guide](https://github.com/aws/amazon-kinesis-client/blob/master/docs/multilang/configuring-credential-providers.md)
+
 
 ## Release Notes
+### Release 2.3.0 (March 12, 2025) - IMPORTANT: See section ``Migration to Node KCL 2.3.0`` to ensure upgrading does not break compatibility
+* Upgraded amazon-kinesis-client from 2.6.1 to 2.7.0 - [Java 2.7.0 release notes](https://github.com/awslabs/amazon-kinesis-client/releases/tag/v2.7.0)
+* [PR #392](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/392) Upgraded netty from 4.1.108 to 4.1.118
+* [PR #392](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/392) Upgraded logback from 1.3.14 to 1.5.16  
+
 ### Release 2.2.7 (January 22, 2025)
 * Upgraded amazon-kinesis-client from 2.5.8 to 2.6.1 - [Java 2.6.1 release notes](https://github.com/awslabs/amazon-kinesis-client/releases/tag/v2.6.1)
 

@@ -283,7 +283,11 @@ Please check the following link for the credentials provider mapping and MultiLa
 
 
 ## Release Notes
+### Release 2.3.1 (March 25, 2025)
+* Downgrade logback from 1.5.16 to 1.3.15 to maintain JDK 8 compatability
+
 ### Release 2.3.0 (March 12, 2025) - IMPORTANT: See section ``Migration to Node KCL 2.3.0`` to ensure upgrading does not break compatibility
+#### :warning: [BREAKING CHANGES] - Release 2.3.0 contains a dependency version that is not compatible with JDK 8. Please upgrade to a later version if your KCL application requires JDK 8.
 * Upgraded amazon-kinesis-client from 2.6.1 to 2.7.0 - [Java 2.7.0 release notes](https://github.com/awslabs/amazon-kinesis-client/releases/tag/v2.7.0)
 * [PR #392](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/392) Upgraded netty from 4.1.108 to 4.1.118
 * [PR #392](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/392) Upgraded logback from 1.3.14 to 1.5.16  

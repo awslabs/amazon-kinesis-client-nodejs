@@ -67,3 +67,10 @@ jobs:
         run: |
           cd samples/basic_sample/producer
           node sample_kinesis_producer_app.js
+
+      - name: Running data processor
+        # potentially change /usr/bin/java to $(which java) if jdk version is messed up
+        # potentially change cd to ~/samples
+        run: |
+          cd samples/basic_sample/consumer
+          ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties

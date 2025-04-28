@@ -14,13 +14,14 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  sample_run:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         node-version: ['18.x', '20.x', '21.x']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        os: [ ubuntu-latest, macOS-latest, windows-latest ]
 
     steps:
     - uses: actions/checkout@v3

@@ -13,23 +13,31 @@ permissions:
 
 jobs:
   sample_run:
+    timout-minutes: 8
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
 
     strategy:
+      fail-fast: false
       matrix:
         node-version: ['18.x', '20.x', '21.x']
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
         os: [ ubuntu-latest, macOS-latest, windows-latest ]
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout working directory
+        uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      - name: npm clean install, build, and test
+      - run: |
+          npm ci
+          npm run build --if-present
+          npm test

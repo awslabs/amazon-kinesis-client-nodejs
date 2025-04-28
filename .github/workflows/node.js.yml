@@ -30,6 +30,13 @@ jobs:
       - name: Checkout working directory
         uses: actions/checkout@v4
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::751999266872:role/GitHubWorkflows
+          role-session-name: myGitHubActions
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:

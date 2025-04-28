@@ -88,4 +88,4 @@ jobs:
         run: |
           cd samples/basic_sample/consumer
           echo $(which java)
-          timeout 45 ../../../bin/kcl-bootstrap --java $(which java) -e -p ./sample.properties  || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi
+          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties  || code=$?; if [[ $code -ne 124 && $code -ne 0 ]]; then exit $code; fi

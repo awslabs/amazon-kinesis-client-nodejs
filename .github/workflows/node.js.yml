@@ -5,7 +5,7 @@
 name: Sample Run
 on:
   push:
-  pull_request_target:
+  pull_request:
 
 permissions:
   id-token: write
@@ -69,6 +69,7 @@ jobs:
         run: |
           cd samples/basic_sample/consumer
           timeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || ( [[ $? -eq 124 ]] )
+          process.exit(1)
 
       - name: Running data processor (macOS)
         if: matrix.os == 'macOS-latest'
@@ -76,6 +77,7 @@ jobs:
           brew install coreutils
           cd samples/basic_sample/consumer
           gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || ( [[ $? -eq 124 ]] )
+          process.exit(1)
 
       - name: Running data processor (windows)
         if: matrix.os == 'windows-latest'
@@ -83,3 +85,4 @@ jobs:
           cd samples/basic_sample/consumer
           echo $(which java)
           timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || ( [[ $? -eq 124 ]] )
+          process.exit(1)

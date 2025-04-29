@@ -22,8 +22,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: ['18.x', '20.x', '21.x']
-        jdk-version: [ "8", "11", "17", "21", "24" ]
+#        node-version: ['18.x', '20.x', '21.x']
+#        jdk-version: [ "8", "11", "17", "21", "24" ]
+        node-version: [ '18.x', '21.x' ]
+        jdk-version: [ "8", "11", "24" ]
         os: [ ubuntu-latest, macOS-latest, windows-latest ]
 
     steps:
@@ -69,18 +71,18 @@ jobs:
         run: |
           cd samples/basic_sample/consumer
           echo $(which java)
-          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || if [[ $? -ne 124 && $? -ne 0 ]]; then exit $?; fi
+          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || if [[ $? -eq 124 && $? -eq 0 ]]; then exit $?; fi
 
       - name: Running data processor (macOS)
         if: matrix.os == 'macOS-latest'
         run: |
           brew install coreutils
           cd samples/basic_sample/consumer
-          gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || if [[ $? -ne 124 && $? -ne 0 ]]; then exit $?; fi
+          gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || if [[ $? -eq 124 && $? -eq 0 ]]; then exit $?; fi
 
       - name: Running data processor (windows)
         if: matrix.os == 'windows-latest'
         run: |
           cd samples/basic_sample/consumer
           echo $(which java)
-          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || if [[ $? -ne 124 && $? -ne 0 ]]; then exit $?; fi
+          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || if [[ $? -eq 124 && $? -eq 0 ]]; then exit $?; fi

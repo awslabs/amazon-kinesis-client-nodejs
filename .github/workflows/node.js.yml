@@ -72,7 +72,7 @@ jobs:
         run: |
           cd samples/basic_sample/consumer
           echo $(which java)
-          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || if [[ $? -ne 124 && $? -ne 0 ]]; then exit $?; else exit 1; fi
+          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || if [[ $? -ne 124 && $? -ne 0 ]]; then exit 1; else exit $?; fi
 
       - name: Running data processor (macOS)
         if: matrix.os == 'macOS-latest'
@@ -80,7 +80,7 @@ jobs:
         run: |
           brew install coreutils
           cd samples/basic_sample/consumer
-          gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || if [[ $? -ne 124 && $? -ne 0 ]]; then exit $?; else exit 1; fi
+          gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || if [[ $? -ne 124 && $? -ne 0 ]]; then exit 1; else exit $?; fi
 
       - name: Running data processor (windows)
         if: matrix.os == 'windows-latest'

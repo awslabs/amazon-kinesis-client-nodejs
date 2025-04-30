@@ -71,7 +71,6 @@ jobs:
         continue-on-error: false
         run: |
           cd samples/basic_sample/consumer
-          echo $(which java)
           timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; fi; exit "$status"
 
       - name: Running data processor (macOS)
@@ -87,5 +86,4 @@ jobs:
         continue-on-error: false
         run: |
           cd samples/basic_sample/consumer
-          echo $(which java)
-          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; fi; exit "$status"
+          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"

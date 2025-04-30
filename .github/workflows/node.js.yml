@@ -71,7 +71,7 @@ jobs:
         continue-on-error: false
         run: |
           cd samples/basic_sample/consumer
-          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; fi; exit "$status"
+          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if [ status == 124 ]; then exit 0; fi; exit "$status"
 
       - name: Running data processor (macOS)
         if: matrix.os == 'macOS-latest'
@@ -79,11 +79,11 @@ jobs:
         run: |
           brew install coreutils
           cd samples/basic_sample/consumer
-          gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"
+          gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || status="$?"; if [ status == 124 ]; then exit 0; else exit 1; fi; exit "$status"
 
       - name: Running data processor (windows)
         if: matrix.os == 'windows-latest'
         continue-on-error: false
         run: |
           cd samples/basic_sample/consumer
-          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"
+          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if [ status == 124 ]; then exit 0; else exit 1; fi; exit "$status"

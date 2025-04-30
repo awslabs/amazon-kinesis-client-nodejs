@@ -66,14 +66,12 @@ jobs:
 
       - name: Running data processor (ubuntu)
         if: matrix.os == 'ubuntu-latest'
-        continue-on-error: false
         run: |
           cd samples/basic_sample/consumer
           timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"
 
       - name: Running data processor (macOS)
         if: matrix.os == 'macOS-latest'
-        continue-on-error: false
         run: |
           brew install coreutils
           cd samples/basic_sample/consumer
@@ -81,7 +79,6 @@ jobs:
 
       - name: Running data processor (windows)
         if: matrix.os == 'windows-latest'
-        continue-on-error: false
         run: |
           cd samples/basic_sample/consumer
           timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"

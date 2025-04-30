@@ -22,10 +22,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-#        node-version: ['18.x', '20.x', '21.x']
-#        jdk-version: [ "8", "11", "17", "21", "24" ]
-        node-version: [ '18.x', '21.x' ]
-        jdk-version: [ "8", "11", "24" ]
+        node-version: ['18.x', '20.x', '21.x']
+        jdk-version: [ "8", "11", "17", "21", "24" ]
         os: [ ubuntu-latest, macOS-latest, windows-latest ]
 
     steps:

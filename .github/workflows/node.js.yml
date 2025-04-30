@@ -65,21 +65,15 @@ jobs:
           cd samples/basic_sample/producer
           node sample_kinesis_producer_app.js
 
-      - name: Running data processor (ubuntu)
-        if: matrix.os == 'ubuntu-latest'
+      - name: Running KCL consumer (windows or ubuntu)
+        if: matrix.os != 'macOS-latest'
         run: |
           cd samples/basic_sample/consumer
           timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"
 
-      - name: Running data processor (macOS)
+      - name: Running KCL consumer (macOS)
         if: matrix.os == 'macOS-latest'
         run: |
           brew install coreutils
           cd samples/basic_sample/consumer
           gtimeout 45 ../../../bin/kcl-bootstrap --java /usr/bin/java -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"
-
-      - name: Running data processor (windows)
-        if: matrix.os == 'windows-latest'
-        run: |
-          cd samples/basic_sample/consumer
-          timeout 45 ../../../bin/kcl-bootstrap -e -p ./sample.properties || status="$?"; if (( status == 124 )); then exit 0; else exit 1; fi; exit "$status"

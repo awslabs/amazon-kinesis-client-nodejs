@@ -2,10 +2,12 @@ version: 2
 updates:
   - package-ecosystem: "maven"
     directory: "/"
-    schedule: 
-      interval: "weekly"
-    # Add assignees, reviewers
+    open-pull-requests-limit: 4
+    schedule:
+      interval: "daily"
+
   - package-ecosystem: "npm"
     directory: "/"
+    open-pull-requests-limit: 4
     schedule:
-      interval: "weekly"
+      interval: "daily"

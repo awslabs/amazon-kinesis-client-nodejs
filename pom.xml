@@ -325,12 +325,12 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.14</version>
+            <version>4.5.13</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.18.0</version>
+            <version>1.15</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -340,7 +340,7 @@
         <dependency>
             <groupId>com.amazon.ion</groupId>
             <artifactId>ion-java</artifactId>
-            <version>1.11.10</version>
+            <version>1.11.4</version>
         </dependency>
         <dependency>
             <groupId>software.amazon.glue</groupId>

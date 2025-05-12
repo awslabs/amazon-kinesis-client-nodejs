@@ -2,12 +2,10 @@ version: 2
 updates:
   - package-ecosystem: "maven"
     directory: "/"
-    open-pull-requests-limit: 4
     schedule:
       interval: "daily"
 
   - package-ecosystem: "npm"
     directory: "/"
-    open-pull-requests-limit: 4
     schedule:
       interval: "daily"

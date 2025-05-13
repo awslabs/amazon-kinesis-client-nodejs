@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   sample-run:
-    timeout-minutes: 8
+    timeout-minutes: 9
     runs-on: ${{ matrix.os }}
     defaults:
       run:

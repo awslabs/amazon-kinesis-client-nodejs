@@ -275,15 +275,10 @@ In this release, we have abstracted these implementation details away and expose
 ## Release Notes
 
 ### Release (v3.0.1 - May 28, 2025)
-* [#415](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/415) Revert "Bump netty.version from 4.1.115.Final to 4.2.1.Final"
 * [#414](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/414) Bump commons-beanutils:commons-beanutils from 1.9.4 to 1.11.0
 * [#413](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/413) Bump mocha from 10.4.0 to 11.5.0
 * [#410](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/410) Bump commander from 12.0.0 to 14.0.0
-* [#409](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/409) KCLnode AWS credentials role change and dependabot auto-merge fix
-* [#408](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/408) Bump netty.version from 4.1.115.Final to 4.2.1.Final
-* [#407](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/407) KCLnode sample build add dependabot auto-merge and workflow dispatch
 * [#403](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/403) Bump io.netty:netty-handler from 4.1.115.Final to 4.1.118.Final
-* [#401](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/401) KCLnode sample build tests
 * [#384](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/384) Bump ch.qos.logback:logback-core from 1.3.14 to 1.3.15
 * [#368](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/368) Bump io.netty:netty-common from 4.1.108.Final to 4.1.115.Final
 * [#367](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/367) Bump braces from 3.0.2 to 3.0.3

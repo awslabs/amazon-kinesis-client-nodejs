@@ -6,9 +6,6 @@ name: Sample Run and Dependabot Auto-merge
 on:
   push:
     branches: [ master ]
-  pull_request_target:
-    branches: [ master ]
-  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -34,8 +31,6 @@ jobs:
     steps:
       - name: Checkout working directory
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4

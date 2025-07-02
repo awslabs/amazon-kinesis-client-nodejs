@@ -5,9 +5,9 @@
 name: Sample Run Tests and Dependabot
 on:
   push:
-    branches: [ master, sample-improve ]
+    branches: [ master ]
   pull_request_target:
-    branches: [ master, sample-improve ]
+    branches: [ master ]
     types: [opened, synchronize, reopened, labeled, unlabeled]
 
 concurrency:
@@ -159,6 +159,9 @@ jobs:
     needs: [ sample-run ]
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]' && github.event.pull_request.user.login == 'dependabot[bot]'
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Fetch Dependabot metadata
         id: metadata
@@ -167,12 +170,12 @@ jobs:
           alert-lookup: true
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-#      - name: Approve PR
-#        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
-#        run: gh pr review --approve "$PR_URL"
-#        env:
-#          PR_URL: ${{github.event.pull_request.html_url}}
-#          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Approve PR
+        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 #      - name: Enable auto-merge for Dependabot PRs
 #        if: steps.metadata.outputs.update-type != 'version-update:semver-major'

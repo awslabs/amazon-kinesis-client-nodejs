@@ -23,7 +23,7 @@ jobs:
     if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request_target' && !contains(github.event.pull_request.labels.*.name, 'skip-sample-tests')) }}
     outputs:
       should_run: 'true'
-      is_fork: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.fork }}
+      is_fork: ${{ github.event_name == 'pull_request_target' && (github.event.pull_request.head.repo.fork || github.event.pull_request.user.login == 'dependabot[bot]') }}
     steps:
       - run: echo "Evaluating workflow conditions"
 
@@ -64,6 +64,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
+
+      - name: Validate os, node-version, and jdk-version
+        run: |
+          [[ "${{ matrix.os }}" =~ ^(ubuntu-latest|macOS-latest|windows-latest)$ ]] || exit 1
+          [[ "${{ matrix.node-version }}" =~ ^(18.x|21.x)$ ]] || exit 1
+          [[ "${{ matrix.jdk-version }}" =~ ^(8|11|17|21|24)$ ]] || exit 1
 
       # Configure AWS Credentials. Role session name is unique to avoid OIDC errors when running multiple tests concurrently
       - name: Configure AWS Credentials
@@ -176,10 +182,3 @@ jobs:
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-#      - name: Enable auto-merge for Dependabot PRs
-#        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
-#        run: gh pr merge --auto --merge "$PR_URL"
-#        env:
-#          PR_URL: ${{github.event.pull_request.html_url}}
-#          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}

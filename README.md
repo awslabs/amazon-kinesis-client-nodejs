@@ -274,6 +274,10 @@ In this release, we have abstracted these implementation details away and expose
 
 ## Release Notes
 
+### Release (v3.0.2 - September 24, 2025)
+* Bump Netty version 4.1.118.Final to version 4.2.4.Final
+* fastxml-jackson version 2.13.5 to version 2.15.0
+
 ### Release (v3.0.1 - May 28, 2025)
 * [#414](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/414) Bump commons-beanutils:commons-beanutils from 1.9.4 to 1.11.0
 * [#413](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/413) Bump mocha from 10.4.0 to 11.5.0

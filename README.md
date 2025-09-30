@@ -283,6 +283,9 @@ Please check the following link for the credentials provider mapping and MultiLa
 
 
 ## Release Notes
+### Release 2.3.2 (September 30, 2025)
+* [PR #437](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/437) Upgrade KCL to version 2.7.2
+
 ### Release 2.3.1 (March 25, 2025)
 * Downgrade logback from 1.5.16 to 1.3.15 to maintain JDK 8 compatability
 

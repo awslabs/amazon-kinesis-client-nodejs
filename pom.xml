@@ -275,7 +275,7 @@
         <dependency>
             <groupId>org.checkerframework</groupId>
             <artifactId>checker-qual</artifactId>
-            <version>3.49.4</version>
+            <version>3.51.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.errorprone</groupId>

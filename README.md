@@ -274,7 +274,8 @@ In this release, we have abstracted these implementation details away and expose
 
 ## Release Notes
 
-### Release 3.0.2 (October 1, 2025)
+### Release 3.1.0 (October 1, 2025)
+* [PR #428](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/428) Add multi-lang support for leaseAssignmentIntervalMillis
 * [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade amazon-kinesis-client from 3.1.1 to 3.1.3
 * [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade aws-sdk from 2.25.64 to 2.33.0
 * [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade org.apache.commons:commons-lang3 from 3.14.0 to 3.18.0

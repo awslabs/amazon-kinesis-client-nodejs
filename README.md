@@ -279,6 +279,7 @@ In this release, we have abstracted these implementation details away and expose
 * [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade aws-sdk from 2.25.64 to 2.33.0
 * [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade org.apache.commons:commons-lang3 from 3.14.0 to 3.18.0
 * [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade netty.version from 4.1.125 to 4.2.4.Final
+* [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade checker-qual from 2.5.2 to 3.49.4
 
 ### Release 3.0.1 (May 28, 2025)
 * [PR #414](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/414) Bump commons-beanutils:commons-beanutils from 1.9.4 to 1.11.0

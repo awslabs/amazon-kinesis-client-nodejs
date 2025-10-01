@@ -274,14 +274,22 @@ In this release, we have abstracted these implementation details away and expose
 
 ## Release Notes
 
-### Release (v3.0.1 - May 28, 2025)
-* [#414](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/414) Bump commons-beanutils:commons-beanutils from 1.9.4 to 1.11.0
-* [#413](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/413) Bump mocha from 10.4.0 to 11.5.0
-* [#410](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/410) Bump commander from 12.0.0 to 14.0.0
-* [#403](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/403) Bump io.netty:netty-handler from 4.1.115.Final to 4.1.118.Final
-* [#384](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/384) Bump ch.qos.logback:logback-core from 1.3.14 to 1.3.15
-* [#368](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/368) Bump io.netty:netty-common from 4.1.108.Final to 4.1.115.Final
-* [#367](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/367) Bump braces from 3.0.2 to 3.0.3
+### Release 3.1.0 (October 1, 2025)
+* [PR #428](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/428) Add multi-lang support for leaseAssignmentIntervalMillis
+* [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade amazon-kinesis-client from 3.1.1 to 3.1.3
+* [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade aws-sdk from 2.25.64 to 2.33.0
+* [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade org.apache.commons:commons-lang3 from 3.14.0 to 3.18.0
+* [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade netty.version from 4.1.125 to 4.2.4.Final
+* [PR #441](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/441) Upgrade checker-qual from 2.5.2 to 3.49.4
+
+### Release 3.0.1 (May 28, 2025)
+* [PR #414](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/414) Bump commons-beanutils:commons-beanutils from 1.9.4 to 1.11.0
+* [PR #413](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/413) Bump mocha from 10.4.0 to 11.5.0
+* [PR #410](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/410) Bump commander from 12.0.0 to 14.0.0
+* [PR #403](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/403) Bump io.netty:netty-handler from 4.1.115.Final to 4.1.118.Final
+* [PR #384](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/384) Bump ch.qos.logback:logback-core from 1.3.14 to 1.3.15
+* [PR #368](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/368) Bump io.netty:netty-common from 4.1.108.Final to 4.1.115.Final
+* [PR #367](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/367) Bump braces from 3.0.2 to 3.0.3
 
 ### Release 3.0.0 (November 6, 2024)
 * New lease assignment / load balancing algorithm

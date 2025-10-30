@@ -273,6 +273,8 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 3.1.1 (October 29, 2025)
+* [PR #446](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/446) Upgrade netty.version from 4.2.4.Final to 4.2.7.Final 
 
 ### Release 3.1.0 (October 1, 2025)
 * [PR #428](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/428) Add multi-lang support for leaseAssignmentIntervalMillis

@@ -158,7 +158,7 @@ jobs:
           STREAM_NAME: ${{ env.STREAM_NAME }}
           APP_NAME: ${{ env.APP_NAME }}
 
-  auto-merge-dependabot:
+  auto-approve-dependabot:
     needs: [ sample-run ]
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'dependabot[bot]'

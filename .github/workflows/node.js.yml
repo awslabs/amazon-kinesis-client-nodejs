@@ -104,8 +104,8 @@ jobs:
           echo "STREAM_NAME=$STREAM_NAME" >> $GITHUB_ENV
           echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
 
-      # Manipulate sample.properties file to use unique stream name and application name
-      - name: Manipulate sample.properties file
+      # Manipulate github_workflow.properties file to use unique stream name and application name
+      - name: Manipulate github_workflow.properties file
         run: |
           chmod +x .github/scripts/manipulate_properties.sh
           .github/scripts/manipulate_properties.sh

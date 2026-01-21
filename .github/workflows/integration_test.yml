@@ -1,0 +1,66 @@
+on: [push]
+name: Integration test
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+    env:
+      streamName: sample
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: keyid
+      AWS_SECRET_KEY: keysecret
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Start LocalStack
+      run: |
+          # https://docs.localstack.cloud/ci/github-actions/#installations-fails-with-attributeerror-module-lib-has-no-attribute-x509_v_flag_cb_issuer_check
+          pip install --upgrade pyopenssl
+          # install LocalStack cli and awslocal
+          pip install localstack awscli-local[ver1]
+          # Make sure to pull the latest version of the image
+          docker pull localstack/localstack
+          # Start LocalStack in the background
+          localstack start -d
+          # Wait 30 seconds for the LocalStack container to become ready before timing out
+          echo "Waiting for LocalStack startup..."
+          localstack wait -t 30
+          echo "Startup complete" 
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - run: npm install
+    
+    - name: KCL Configs
+      run: |
+        echo "shutdownGraceMillis = 10000" >> samples/basic_sample/consumer/sample.properties
+        echo "dynamoDBEndpoint = http://localhost:4566" >> samples/basic_sample/consumer/sample.properties
+        echo "kinesisEndpoint = http://localhost:4566" >> samples/basic_sample/consumer/sample.properties
+        echo "metricsLevel = NONE" >> samples/basic_sample/consumer/sample.properties
+        echo "retrievalMode=POLLING" >> samples/basic_sample/consumer/sample.properties
+
+    - name: Creating Kinesis Stream
+      run: |
+        awslocal kinesis create-stream --shard-count 2 --stream-name $streamName
+        sleep 5
+
+    - name: Publishing messages
+      run: |
+        data='{"action":"processRecords"}'
+        awslocal kinesis put-record --stream-name $streamName --data $data --partition-key sharda
+        awslocal kinesis put-record --stream-name $streamName --data $data --partition-key shardb
+
+    - name: Starting Subscriber
+      run: |
+        cd samples/basic_sample/consumer/
+        ../../../bin/kcl-bootstrap -e -p sample.properties &
+        pid=$!
+        echo "subscriberPID=$pid" >> $GITHUB_ENV
+        sleep 120 # TODO: should wait for processed record
+
+    - name: Assert results
+      run: |
+        kill -15 $subscriberPID
+        sleep 10
+        cat samples/basic_sample/consumer/application.log

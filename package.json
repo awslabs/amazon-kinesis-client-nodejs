@@ -42,7 +42,9 @@
     "sinon": "^17.0.1"
   },
   "overrides": {
-    "glob": "^10.5.0"
+    "glob": "^10.5.0",
+    "serialize-javascript": "^7.0.3",
+    "minimatch": "^9.0.7"
   },
   "homepage": "https://github.com/awslabs/amazon-kinesis-client-nodejs",
   "repository": {

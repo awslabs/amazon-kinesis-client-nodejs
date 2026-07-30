@@ -273,6 +273,16 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+* [PR #452](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/452) Override Glob dependency to ^10.5.0
+* [PR #456](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/456) Upgrade ch.qos.logback:logback-core from 1.3.15 to 1.3.16
+* [PR #457](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/457) Upgrade js-yaml from 3.14.1 to 3.14.2 and 4.1.0 to 4.1.1
+* [PR #460](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/460) Override serialize-js to ^7.0.3 and minimatch to ^3.1.3 / ^9.0.7
+* [PR #462](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/462) Upgrade com.fasterxml.jackson.core:jackson-core from 2.15.0 to 2.18.6
+* [PR #464](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/464) Upgrade flattened from 3.3.4 to 3.4.2
+* [PR #465](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/465) Upgrade picomatch from 2.3.1 to 2.3.2
+* [PR #468](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/468) Override lodash to ^4.18.1 and serialize-js to ^7.0.5
+* [PR #473](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/473) Upgrade io.netty:netty-codec-http from 4.2.10.Final to 4.2.13.Final
+
 ### Release 3.1.1 (October 29, 2025)
 * [PR #446](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/446) Upgrade netty.version from 4.2.4.Final to 4.2.7.Final 
 

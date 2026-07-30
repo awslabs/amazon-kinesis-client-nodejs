@@ -282,7 +282,13 @@ In this release, we have abstracted these implementation details away and expose
 * [PR #464](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/464) Upgrade flattened from 3.3.4 to 3.4.2
 * [PR #465](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/465) Upgrade picomatch from 2.3.1 to 2.3.2
 * [PR #468](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/468) Override lodash to ^4.18.1 and serialize-js to ^7.0.5
-* [PR #473](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/473) Upgrade io.netty:netty-codec-http from 4.2.10.Final to 4.2.13.Final
+* Upgrade io.netty:netty-codec-http from 4.2.7.Final to 4.2.13.Final
+  * [PR #458](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/458) Upgrade io.netty:netty-codec-http from 4.2.7.Final to 4.2.8.Final
+  * [PR #467](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/467) Upgrade io.netty:netty-codec-http from 4.2.8.Final to 4.2.10.Final
+  * [PR #473](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/473) Upgrade io.netty:netty-codec-http from 4.2.10.Final to 4.2.13.Final
+* Upgrade lodash from 4.12.21 to ^4.18.1
+  * [PR #459](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/459) Upgrade lodash from 4.17.21 to 4.17.23
+  * [PR #468](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/468) Override lodash to ^4.18.1
 
 ### Release 3.1.1 (October 29, 2025)
 * [PR #446](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/446) Upgrade netty.version from 4.2.4.Final to 4.2.7.Final 

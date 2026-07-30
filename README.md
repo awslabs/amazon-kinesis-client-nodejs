@@ -273,6 +273,7 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 3.1.2 (July 30, 2026)
 * [PR #452](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/452) Override Glob dependency to ^10.5.0
 * [PR #456](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/456) Upgrade ch.qos.logback:logback-core from 1.3.15 to 1.3.16
 * [PR #457](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/457) Upgrade js-yaml from 3.14.1 to 3.14.2 and 4.1.0 to 4.1.1

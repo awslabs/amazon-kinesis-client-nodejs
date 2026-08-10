@@ -229,7 +229,7 @@ function isDirectory(path) {
 
 function createDirectory(path) {
   try {
-    fs.mkdirSync(path);
+    fs.mkdirSync(path, {'recursive': true});
   } catch (e) {
     if (e.code !== 'EEXIST') {
       throw e;

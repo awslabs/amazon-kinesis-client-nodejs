@@ -12,6 +12,7 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 var path = require('path');
+var os = require('os');
 var spawn = require('child_process').spawn;
 var convert = require('xml-js');
 var url = require('url');
@@ -97,7 +98,29 @@ function startKinesisClientLibraryApplication(options) {
   console.log("==========================================================");
   if (options.execute) {
     console.log("Starting MultiLangDaemon ...");
-    spawn(java, args, { stdio: 'inherit' });
+    var javaProcess = spawn(java, args, { stdio: 'inherit' });
+    var signalHandlers = {};
+    ['SIGTERM', 'SIGINT'].forEach(function (signal) {
+      signalHandlers[signal] = function () {
+        javaProcess.kill(signal);
+      };
+      process.on(signal, signalHandlers[signal]);
+    });
+
+    var removeSignalHandlers = function () {
+      Object.keys(signalHandlers).forEach(function (signal) {
+        process.removeListener(signal, signalHandlers[signal]);
+      });
+    };
+
+    javaProcess.once('error', function (err) {
+      removeSignalHandlers();
+      errorExit(util.format('Unable to start MultiLangDaemon: %s', err));
+    });
+    javaProcess.once('exit', function (code, signal) {
+      removeSignalHandlers();
+      process.exit(signal ? 128 + os.constants.signals[signal] : code);
+    });
   }
 }
 

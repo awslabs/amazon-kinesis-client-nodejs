@@ -218,6 +218,26 @@ To start the data processor, run the following command from the root of the repo
     kcl-bootstrap --help
 ```
 
+### Graceful shutdown
+
+With `--execute`, `kcl-bootstrap` forwards `SIGTERM` and `SIGINT` to the Java
+MultiLangDaemon and waits for it to exit. The bootstrap process preserves the
+daemon's exit status. Signals are sent to the daemon, not to its record processor
+children, so the daemon can coordinate their shutdown through the KCL protocol.
+
+Set `shutdownGraceMillis` in the properties file to allow time for processing and
+checkpointing to finish, for example:
+
+```properties
+shutdownGraceMillis = 10000
+```
+
+Choose a value appropriate for your processing time, and configure the container's
+stop timeout to allow the daemon to complete shutdown. Signals must reach the
+bootstrap process; a shell or another process manager may need to forward them.
+Terminal-generated signals can also reach other processes in the foreground
+process group, which differs from sending a signal only to the bootstrap process.
+
 ### Cleaning Up
 This sample application creates an [Amazon Kinesis][amazon-kinesis] stream, sends data to it, and creates a DynamoDB table to track the KCL application state. This will incur nominal costs to your AWS account, and continue to do so even when the sample app is finished. To stop being charged, delete these resources. Specifically, the sample application creates following AWS resources:
 

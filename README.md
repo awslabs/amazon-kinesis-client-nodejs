@@ -273,7 +273,7 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
-### Release (3.1.3 - October 23, 2026)
+### Release (3.2.0 - October 23, 2026)
 * [#501](https://github.com/awslabs/amazon-kinesis-client-net/pull/501)
   * Upgrade amazon-kinesis-client from 3.1.3 to 3.5.3
   * Upgrade aws-sdk from 2.33.0 to 2.41.21

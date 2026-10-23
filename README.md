@@ -285,7 +285,7 @@ In this release, we have abstracted these implementation details away and expose
   * Upgrade io.netty:netty-codec-http from 4.2.13.Final to 4.2.19.Final
   * Upgrade io.opentelemetry:opentelemetry-api
   * Introduced opentelemetry.version 1.62.0
-  * Introduced netty-reactive.version 2.0.6*
+  * Introduced netty-reactive.version 2.0.6
 * [#483](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/483) Upgrade brace-expansion
 
 ### Release 3.1.2 (July 30, 2026)

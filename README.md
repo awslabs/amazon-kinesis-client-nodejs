@@ -286,7 +286,7 @@ In this release, we have abstracted these implementation details away and expose
   * Upgrade io.opentelemetry:opentelemetry-api
   * Introduced opentelemetry.version 1.62.0
   * Introduced netty-reactive.version 2.0.6
-* [#483](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/483) Upgrade brace-expansion 2.0.3 to 2.1.4
+* [#483](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/483) Upgrade brace-expansion from 2.0.3 to 2.1.4
 
 ### Release 3.1.2 (July 30, 2026)
 * [PR #452](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/452) Override Glob dependency to ^10.5.0

@@ -273,6 +273,26 @@ In this release, we have abstracted these implementation details away and expose
 
 
 ## Release Notes
+### Release 3.2.0 (October 26, 2026)
+* [PR #501](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/501)
+  * Upgrade amazon-kinesis-client from 3.1.3 to 3.5.3
+  * Upgrade aws-sdk from 2.33.0 to 2.41.21
+  * Upgrade dynamodb-lock-client from 1.3.0 to 1.4.0
+  * Upgrade reactive-streams from 1.0.3 to 1.0.4
+  * Upgrade rxjava from 3.1.8 to 3.1.11
+  * Upgrade schema-registry-serde from 1.1.19 to 1.1.27
+  * Upgrade com.fasterxml.jackson.core:jackson-core from 2.18.6 to 2.18.11
+  * Upgrade io.netty:netty-codec-http from 4.2.13.Final to 4.2.19.Final
+  * Upgrade io.opentelemetry:opentelemetry-api
+  * Introduced opentelemetry.version 1.62.0
+  * Introduced netty-reactive.version 2.0.6
+* [PR #505](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/505)
+    * Add npm `overrides` to force transitive dependencies onto patched versions:
+      * `brace-expansion` `^2.0.1` 
+      * `markdown-it` `^14.3.3` 
+      * `linkify-it` `^5.0.2` 
+      * `postcss` `^8.5.18` 
+
 ### Release 3.1.2 (July 30, 2026)
 * [PR #452](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/452) Override Glob dependency to ^10.5.0
 * [PR #456](https://github.com/awslabs/amazon-kinesis-client-nodejs/pull/456) Upgrade ch.qos.logback:logback-core from 1.3.15 to 1.3.16
